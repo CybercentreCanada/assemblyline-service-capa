@@ -1,0 +1,23 @@
+name: CAPA
+version: $SERVICE_TAG
+description: >-
+  This service uses the CAPA open source library to identify what the program at hand could do.
+
+accepts: executable/windows
+rejects: empty|metadata/.*
+
+stage: CORE
+category: Static Analysis
+
+file_required: true
+timeout: 60
+disable_cache: false
+
+enabled: true
+is_external: false
+licence_count: 0
+
+docker_config:
+  image: ${REGISTRY}cccs/assemblyline-service-capa:$SERVICE_TAG
+  cpu_cores: 3
+  ram_mb: 2048
