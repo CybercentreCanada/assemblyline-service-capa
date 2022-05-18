@@ -11,7 +11,7 @@ from assemblyline_v4_service.common.result import Result, ResultSection
 
 class CAPA(ServiceBase):
     def __init__(self, config=None):
-        super(CAPA, self).__init__(config)
+        super().__init__(config)
 
     def start(self):
         # capa does not declare a __str__ or a __repr__ for that special object, so without the following, we get
