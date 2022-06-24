@@ -17,6 +17,16 @@ enabled: true
 is_external: false
 licence_count: 0
 
+config:
+  max_file_size: 512000
+
+submission_params:
+  - default: "default"
+    name: renderer
+    type: list
+    value: "default"
+    list: ["default", "simple", "verbose"]
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-capa:$SERVICE_TAG
   cpu_cores: 3
