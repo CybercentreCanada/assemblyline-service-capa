@@ -82,3 +82,6 @@ venv.bak/
 
 # Cython debug symbols
 cython_debug/
+
+#Special CAPA lib directory
+!CAPA/capa-rules-*/**
