@@ -30,4 +30,4 @@ submission_params:
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-capa:$SERVICE_TAG
   cpu_cores: 1
-  ram_mb: 2048
+  ram_mb: 4086
