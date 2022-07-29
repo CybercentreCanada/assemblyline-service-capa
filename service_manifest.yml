@@ -27,6 +27,13 @@ submission_params:
     value: "default"
     list: ["default", "simple", "verbose"]
 
+heuristics:
+  - description: CAPA found some ATT&CK IDs
+    filetype: "executable/windows"
+    heur_id: 1
+    name: ATT&CK ID Found
+    score: 0
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-capa:$SERVICE_TAG
   cpu_cores: 1

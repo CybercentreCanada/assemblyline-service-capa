@@ -153,6 +153,7 @@ class CAPA(ServiceBase):
     def render_attack(self, request, tactics):
         added = False
         res = ResultTableSection("ATT&CK")
+        res.set_heuristic(1)
         for tactic, techniques in sorted(tactics.items()):
             for (technique, subtechnique, id) in sorted(techniques):
                 res.add_row(
@@ -164,6 +165,7 @@ class CAPA(ServiceBase):
                         }
                     )
                 )
+                res.heuristic.add_attack_id(id)
                 added = True
         if added:
             request.result.add_section(res)
@@ -223,6 +225,7 @@ class CAPA(ServiceBase):
                 capability = f"{rule['meta']['name']} ({count} matches)"
 
             res = ResultOrderedKeyValueSection(capability)
+            attack_enabled = False
 
             for key in META_KEYS:
                 # Try to trim down the amount of information to show the most important only
@@ -234,6 +237,11 @@ class CAPA(ServiceBase):
                     continue
 
                 if key in ("att&ck", "mbc"):
+                    if key == "att&ck":
+                        if not attack_enabled:
+                            res.set_heuristic(1)
+                            attack_enabled = True
+                        [res.heuristic.add_attack_id(data["id"]) for data in v]
                     v = ["%s [%s]" % ("::".join(data["parts"]), data["id"]) for data in v]
 
                 if isinstance(v, list) and len(v) == 1:
