@@ -144,7 +144,7 @@ class CAPA(ServiceBase):
                     capability = rule["meta"]["name"]
                 else:
                     capability = f"{rule['meta']['name']} ({count} matches)"
-                caps.append((capability, rule["meta"]["namespace"]))
+                caps.append((capability, rule["meta"].get("namespace", "")))
 
         self.render_attack(request, tactics)
         self.render_mbc(request, objectives)
