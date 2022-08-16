@@ -4,6 +4,7 @@ from collections import defaultdict
 
 import capa.engine
 import capa.main
+import capa.render.result_document as rd
 import capa.version
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import ServiceRequest
@@ -15,9 +16,8 @@ from assemblyline_v4_service.common.result import (
     TableRow,
 )
 from capa.render.default import find_subrule_matches
-from capa.render.result_document import convert_capabilities_to_result_document
 from capa.render.utils import capability_rules
-from capa.rules import META_KEYS, InvalidRule, InvalidRuleSet, RuleSet
+from capa.rules import InvalidRule, InvalidRuleSet, RuleSet
 
 
 def safely_get_param(request: ServiceRequest, param, default):
@@ -47,9 +47,9 @@ class CAPA(ServiceBase):
         )
 
         try:
-            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v3.2.0.zip
+            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v4.0.1.zip
             rules_path = capa.main.get_rules(
-                os.path.join(os.path.dirname(__file__), "capa-rules-3.2.0"),
+                [os.path.join(os.path.dirname(__file__), "capa-rules-4.0.1")],
                 disable_progress=True,
             )
             self.rules = RuleSet(rules_path)
@@ -59,7 +59,7 @@ class CAPA(ServiceBase):
             return -1
 
         try:
-            # Ruleset downloaded from https://github.com/fireeye/capa/tree/v3.2.0/sigs
+            # Ruleset downloaded from https://github.com/fireeye/capa/tree/v4.0.1/sigs
             self.sig_paths = capa.main.get_signatures(os.path.join(os.path.dirname(__file__), "sigs"))
         except (IOError) as e:
             self.log.error("%s", str(e))
@@ -100,10 +100,11 @@ class CAPA(ServiceBase):
                 "error": "unexpected error: %s" % (e),
             }
 
-        meta = {"analysis": {"layout": {}}}
+        meta = capa.main.collect_metadata([], path, [], extractor)
         self.log.debug("Getting capa capabilities")
         capabilities, counts = capa.main.find_capabilities(rules, extractor, disable_progress=True)
         meta["analysis"].update(counts)
+        meta["analysis"]["layout"] = capa.main.compute_layout(rules, extractor, capabilities)
         self.log.debug("Got capa capabilities")
 
         file_limitation_rules = list(filter(capa.main.is_file_limitation_rule, rules.rules.values()))
@@ -116,7 +117,7 @@ class CAPA(ServiceBase):
             request.result.add_section(res)
             break
 
-        doc = convert_capabilities_to_result_document(meta, rules, capabilities)
+        doc = rd.ResultDocument.from_capa(meta, rules, capabilities)
 
         renderer = safely_get_param(request, "renderer", "default")
         if renderer == "simple":
@@ -126,25 +127,23 @@ class CAPA(ServiceBase):
         else:
             self.default_view(request, doc)
 
-    def default_view(self, request, doc):
+    def default_view(self, request, doc: rd.ResultDocument):
         tactics = defaultdict(set)
         objectives = defaultdict(set)
         caps = []
         subrule_matches = find_subrule_matches(doc)
         for rule in capability_rules(doc):
-            if rule["meta"].get("att&ck"):
-                for attack in rule["meta"]["att&ck"]:
-                    tactics[attack["tactic"]].add((attack["technique"], attack.get("subtechnique"), attack["id"]))
-            if rule["meta"].get("mbc"):
-                for mbc in rule["meta"]["mbc"]:
-                    objectives[mbc["objective"]].add((mbc["behavior"], mbc.get("method"), mbc["id"]))
-            if rule["meta"]["name"] not in subrule_matches:
-                count = len(rule["matches"])
+            for attack in rule.meta.attack:
+                tactics[attack.tactic].add((attack.technique, attack.subtechnique, attack.id))
+            for mbc in rule.meta.mbc:
+                objectives[mbc.objective].add((mbc.behavior, mbc.method, mbc.id))
+            if rule.meta.name not in subrule_matches:
+                count = len(rule.matches)
                 if count == 1:
-                    capability = rule["meta"]["name"]
+                    capability = rule.meta.name
                 else:
-                    capability = f"{rule['meta']['name']} ({count} matches)"
-                caps.append((capability, rule["meta"].get("namespace", "")))
+                    capability = f"{rule.meta.name} ({count} matches)"
+                caps.append((capability, rule.meta.namespace if rule.meta.namespace else ""))
 
         self.render_attack(request, tactics)
         self.render_mbc(request, objectives)
@@ -205,50 +204,62 @@ class CAPA(ServiceBase):
             request.result.add_section(res)
 
     def simple_view(self, request, capabilities):
-        def ends_with_subscope_rule(rule_name):
-            return len(rule_name) > 33 and rule_name[-33] == "/" and all(c in string.hexdigits for c in rule_name[-32:])
+        def remove_hash_ending(rule_name):
+            if len(rule_name) > 33 and rule_name[-33] == "/" and all(c in string.hexdigits for c in rule_name[-32:]):
+                return remove_hash_ending(rule_name[:-33])
+            return rule_name
 
-        capa_graph_data = list(set([x[:-33] if ends_with_subscope_rule(x) else x for x in capabilities.keys()]))
+        capa_graph_data = list(set([remove_hash_ending(x) for x in capabilities.keys()]))
 
         res = ResultSection("CAPA Information")
-        for element in capa_graph_data:
-            res.add_line(element)
+        res.add_lines(capa_graph_data)
 
         request.result.add_section(res)
 
-    def render_rules(self, request, doc):
-        for rule in capability_rules(doc):
-            count = len(rule["matches"])
+    def render_rules(self, request, doc: rd.ResultDocument):
+        # See https://github.com/mandiant/capa/blob/v4.0.1/capa/render/vverbose.py#L261
+        for (_, _, rule) in sorted(
+            map(lambda rule: (rule.meta.namespace or "", rule.meta.name, rule), doc.rules.values())
+        ):
+            if rule.meta.is_subscope_rule:
+                continue
+
+            count = len(rule.matches)
             if count == 1:
-                capability = rule["meta"]["name"]
+                capability = rule.meta.name
             else:
-                capability = f"{rule['meta']['name']} ({count} matches)"
+                capability = f"{rule.meta.name} ({count} matches)"
 
             res = ResultOrderedKeyValueSection(capability)
-            attack_enabled = False
 
-            for key in META_KEYS:
-                # Try to trim down the amount of information to show the most important only
-                if key in ["name", "author", "scope", "references", "examples"] or key not in rule["meta"]:
-                    continue
+            res.add_item("namespace", rule.meta.namespace if rule.meta.namespace else "")
 
-                v = rule["meta"][key]
-                if not v:
-                    continue
+            if rule.meta.maec.analysis_conclusion or rule.meta.maec.analysis_conclusion_ov:
+                res.add_item(
+                    "maec/analysis-conclusion",
+                    rule.meta.maec.analysis_conclusion or rule.meta.maec.analysis_conclusion_ov,
+                )
 
-                if key in ("att&ck", "mbc"):
-                    if key == "att&ck":
-                        if not attack_enabled:
-                            res.set_heuristic(1)
-                            attack_enabled = True
-                        [res.heuristic.add_attack_id(data["id"]) for data in v]
-                    v = ["%s [%s]" % ("::".join(data["parts"]), data["id"]) for data in v]
+            if rule.meta.maec.malware_family:
+                res.add_item("maec/malware-family", rule.meta.maec.malware_family)
 
-                if isinstance(v, list) and len(v) == 1:
-                    v = v[0]
-                elif isinstance(v, list) and len(v) > 1:
-                    v = ", ".join(v)
-                res.add_item(key, v)
+            if rule.meta.maec.malware_category or rule.meta.maec.malware_category_ov:
+                res.add_item(
+                    "maec/malware-category", rule.meta.maec.malware_category or rule.meta.maec.malware_category_ov
+                )
+
+            if rule.meta.description:
+                res.add_item("description", rule.meta.description)
+
+            if rule.meta.attack:
+                res.set_heuristic(1)
+                [res.heuristic.add_attack_id(data.id) for data in rule.meta.attack]
+                res.add_item(
+                    "att&ck", ", ".join(["%s [%s]" % ("::".join(data.parts), data.id) for data in rule.meta.attack])
+                )
+
+            if rule.meta.mbc:
+                res.add_item("mbc", ", ".join(["%s [%s]" % ("::".join(data.parts), data.id) for data in rule.meta.mbc]))
 
             request.result.add_section(res)
 
@@ -258,7 +269,7 @@ class CAPA(ServiceBase):
         if request.file_size > self.config.get("max_file_size", 512000):
             return
 
-        self.get_capa_results(request, self.rules, self.sig_paths, "pe", request.file_path)
+        self.get_capa_results(request, self.rules, self.sig_paths, "auto", request.file_path)
 
     def get_tool_version(self):
         return capa.version.__version__
