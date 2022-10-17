@@ -3,8 +3,8 @@ version: $SERVICE_TAG
 description: >-
   This service uses the CAPA open source library to identify what the program at hand could do.
 
-accepts: executable/windows
-rejects: empty|metadata/.*
+accepts: executable/windows/.*
+rejects: empty|metadata/.*|executable/windows/dos|executable/windows/com
 
 stage: CORE
 category: Static Analysis
