@@ -55,14 +55,14 @@ class CAPA(ServiceBase):
             self.rules = RuleSet(rules_path)
             self.log.info("successfully loaded %s rules", len(self.rules))
         except (IOError, InvalidRule, InvalidRuleSet) as e:
-            self.log.error("%s", str(e))
+            self.log.error("InvalidRuleSet: %s", str(e))
             return -1
 
         try:
             # Ruleset downloaded from https://github.com/fireeye/capa/tree/v4.0.1/sigs
             self.sig_paths = capa.main.get_signatures(os.path.join(os.path.dirname(__file__), "sigs"))
         except (IOError) as e:
-            self.log.error("%s", str(e))
+            self.log.error("InvalidSignatureSet: %s", str(e))
             return -1
 
     def get_capa_results(self, request: ServiceRequest, rules, sigpaths, format, path):
@@ -79,21 +79,21 @@ class CAPA(ServiceBase):
                 disable_progress=True,
             )
         except capa.main.UnsupportedFormatError as e:
-            self.log.error("%s", str(e))
+            self.log.error("UnsupportedFormatError: %s", str(e))
             return {
                 "path": path,
                 "status": "error",
                 "error": "input file does not appear to be a PE file: %s" % path,
             }
         except capa.main.UnsupportedRuntimeError as e:
-            self.log.error("%s", str(e))
+            self.log.error("UnsupportedRuntimeError: %s", str(e))
             return {
                 "path": path,
                 "status": "error",
                 "error": "unsupported runtime or Python interpreter",
             }
         except Exception as e:
-            self.log.error("%s", str(e))
+            self.log.error("Exception: %s", str(e))
             return {
                 "path": path,
                 "status": "error",
