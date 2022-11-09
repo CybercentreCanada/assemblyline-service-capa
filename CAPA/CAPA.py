@@ -93,7 +93,10 @@ class CAPA(ServiceBase):
                 "error": "unsupported runtime or Python interpreter",
             }
         except Exception as e:
-            self.log.error("Exception: %s", str(e))
+            if request.file_type == "executable/windows/dos" or request.task.mime != "application/x-dosexec":
+                self.log.debug("Exception (dos file): %s", str(e))
+            else:
+                self.log.error("Exception: %s", str(e))
             return {
                 "path": path,
                 "status": "error",
