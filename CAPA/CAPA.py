@@ -1,6 +1,7 @@
 import os
 import string
 from collections import defaultdict
+from pathlib import Path
 
 import capa.engine
 import capa.main
@@ -17,7 +18,7 @@ from assemblyline_v4_service.common.result import (
 )
 from capa.render.default import find_subrule_matches
 from capa.render.utils import capability_rules
-from capa.rules import InvalidRule, InvalidRuleSet, RuleSet
+from capa.rules import InvalidRule, InvalidRuleSet
 
 
 def safely_get_param(request: ServiceRequest, param, default):
@@ -45,22 +46,19 @@ class CAPA(ServiceBase):
             f"locations: {self.locations}"
             ")"
         )
+        self.rule_paths = [Path(os.path.join(os.path.dirname(__file__), "capa-rules-6.1.0"))]
 
         try:
-            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v4.0.1.zip
-            rules_path = capa.main.get_rules(
-                [os.path.join(os.path.dirname(__file__), "capa-rules-4.0.1")],
-                disable_progress=True,
-            )
-            self.rules = RuleSet(rules_path)
+            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v6.1.0.zip
+            self.rules = capa.main.get_rules(self.rule_paths)
             self.log.info("successfully loaded %s rules", len(self.rules))
         except (IOError, InvalidRule, InvalidRuleSet) as e:
             self.log.error("InvalidRuleSet: %s", str(e))
             return -1
 
         try:
-            # Ruleset downloaded from https://github.com/fireeye/capa/tree/v4.0.1/sigs
-            self.sig_paths = capa.main.get_signatures(os.path.join(os.path.dirname(__file__), "sigs"))
+            # Ruleset downloaded from https://github.com/fireeye/capa/tree/v6.1.0/sigs
+            self.sig_paths = capa.main.get_signatures(Path(os.path.join(os.path.dirname(__file__), "sigs")))
         except (IOError) as e:
             self.log.error("InvalidSignatureSet: %s", str(e))
             return -1
@@ -71,8 +69,9 @@ class CAPA(ServiceBase):
         self.log.debug("Getting capa extractor for: %s", path)
         try:
             extractor = capa.main.get_extractor(
-                path,
+                Path(path),
                 format,
+                capa.main.OS_AUTO,
                 capa.main.BACKEND_VIV,
                 sigpaths,
                 should_save_workspace,
@@ -103,11 +102,12 @@ class CAPA(ServiceBase):
                 "error": "unexpected error: %s" % (e),
             }
 
-        meta = capa.main.collect_metadata([], path, [], extractor)
+        meta = capa.main.collect_metadata([], Path(path), format, capa.main.OS_AUTO, self.rule_paths, extractor)
         self.log.debug("Getting capa capabilities")
         capabilities, counts = capa.main.find_capabilities(rules, extractor, disable_progress=True)
-        meta["analysis"].update(counts)
-        meta["analysis"]["layout"] = capa.main.compute_layout(rules, extractor, capabilities)
+        meta.analysis.feature_counts = counts['feature_counts']
+        meta.analysis.library_functions = counts['library_functions']
+        meta.analysis.layout = capa.main.compute_layout(rules, extractor, capabilities)
         self.log.debug("Got capa capabilities")
 
         file_limitation_rules = list(filter(capa.main.is_file_limitation_rule, rules.rules.values()))
@@ -220,10 +220,8 @@ class CAPA(ServiceBase):
         request.result.add_section(res)
 
     def render_rules(self, request, doc: rd.ResultDocument):
-        # See https://github.com/mandiant/capa/blob/v4.0.1/capa/render/vverbose.py#L261
-        for (_, _, rule) in sorted(
-            map(lambda rule: (rule.meta.namespace or "", rule.meta.name, rule), doc.rules.values())
-        ):
+        # See https://github.com/mandiant/capa/blob/v6.1.0/capa/render/vverbose.py#L281
+        for _, _, rule in sorted((rule.meta.namespace or "", rule.meta.name, rule) for rule in doc.rules.values()):
             if rule.meta.is_subscope_rule:
                 continue
 
