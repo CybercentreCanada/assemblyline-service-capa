@@ -1,0 +1,243 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1070.004",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Indicator Removal (File Deletion)"
+          },
+          {
+            "ATT&CK ID": "T1027",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information"
+          },
+          {
+            "ATT&CK ID": "T1497.001",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Virtualization/Sandbox Evasion (System Checks)"
+          },
+          {
+            "ATT&CK ID": "T1083",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "File and Directory Discovery"
+          },
+          {
+            "ATT&CK ID": "T1012",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "Query Registry"
+          },
+          {
+            "ATT&CK ID": "T1082",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Information Discovery"
+          },
+          {
+            "ATT&CK ID": "T1129",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Shared Modules"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1070.004",
+            "T1027",
+            "T1497.001",
+            "T1083",
+            "T1012",
+            "T1082",
+            "T1129"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Virtual Machine Detection",
+            "MBC ID": "B0009",
+            "MBC Objective": "ANTI-BEHAVIORAL ANALYSIS"
+          },
+          {
+            "MBC Behavior": "Encode Data (XOR)",
+            "MBC ID": "C0026.002",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Obfuscated Files or Information (Encoding-Standard Algorithm)",
+            "MBC ID": "E1027.m02",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
+            "MBC Behavior": "Self Deletion (COMSPEC Environment Variable)",
+            "MBC ID": "F0007.001",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
+            "MBC Behavior": "File and Directory Discovery",
+            "MBC ID": "E1083",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "System Information Discovery",
+            "MBC ID": "E1082",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "Copy File",
+            "MBC ID": "C0045",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Read File",
+            "MBC ID": "C0051",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Writes File",
+            "MBC ID": "C0052",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Registry (Query Registry Value)",
+            "MBC ID": "C0036.006",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Create Process",
+            "MBC ID": "C0017",
+            "MBC Objective": "PROCESS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "check OS version",
+            "Namespace": "host-interaction/os/version"
+          },
+          {
+            "Capability": "copy file",
+            "Namespace": "host-interaction/file-system/copy"
+          },
+          {
+            "Capability": "create process on Windows",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "encode data using XOR",
+            "Namespace": "data-manipulation/encoding/xor"
+          },
+          {
+            "Capability": "get common file path",
+            "Namespace": "host-interaction/file-system"
+          },
+          {
+            "Capability": "link function at runtime on Windows (2 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
+            "Capability": "query environment variable",
+            "Namespace": "host-interaction/environment-variable"
+          },
+          {
+            "Capability": "query or enumerate registry value",
+            "Namespace": "host-interaction/registry"
+          },
+          {
+            "Capability": "read file on Windows (5 matches)",
+            "Namespace": "host-interaction/file-system/read"
+          },
+          {
+            "Capability": "reference anti-VM strings targeting VMWare",
+            "Namespace": "anti-analysis/anti-vm/vm-detection"
+          },
+          {
+            "Capability": "self delete",
+            "Namespace": "anti-analysis/anti-forensic/self-deletion"
+          },
+          {
+            "Capability": "write file on Windows (3 matches)",
+            "Namespace": "host-interaction/file-system/write"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1070.004",
+          "T1027",
+          "T1497.001",
+          "T1083",
+          "T1012",
+          "T1082",
+          "T1129"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

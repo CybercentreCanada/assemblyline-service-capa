@@ -1,0 +1,157 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1056.001",
+            "ATT&CK Tactic": "COLLECTION",
+            "ATT&CK Technique": "Input Capture (Keylogging)"
+          },
+          {
+            "ATT&CK ID": "T1027",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information"
+          },
+          {
+            "ATT&CK ID": "T1134",
+            "ATT&CK Tactic": "PRIVILEGE ESCALATION",
+            "ATT&CK Technique": "Access Token Manipulation"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1056.001",
+            "T1027",
+            "T1134"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Keylogging (Application Hook)",
+            "MBC ID": "F0002.001",
+            "MBC Objective": "COLLECTION"
+          },
+          {
+            "MBC Behavior": "Encode Data (XOR)",
+            "MBC ID": "C0026.002",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Obfuscated Files or Information (Encoding-Standard Algorithm)",
+            "MBC ID": "E1027.m02",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
+            "MBC Behavior": "Install Additional Program",
+            "MBC ID": "B0023",
+            "MBC Objective": "EXECUTION"
+          },
+          {
+            "MBC Behavior": "Allocate Memory",
+            "MBC ID": "C0007",
+            "MBC Objective": "MEMORY"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "contain an embedded PE file",
+            "Namespace": "executable/subfile/pe"
+          },
+          {
+            "Capability": "encode data using XOR",
+            "Namespace": "data-manipulation/encoding/xor"
+          },
+          {
+            "Capability": "execute shellcode via indirect call",
+            "Namespace": "load-code/shellcode"
+          },
+          {
+            "Capability": "log keystrokes via application hook",
+            "Namespace": "collection/keylog"
+          },
+          {
+            "Capability": "modify access privileges (4 matches)",
+            "Namespace": "host-interaction/process/modify"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1056.001",
+          "T1027",
+          "T1134"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

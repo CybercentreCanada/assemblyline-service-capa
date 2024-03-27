@@ -1,0 +1,115 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1497.001",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Virtualization/Sandbox Evasion (System Checks)"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1497.001"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Virtual Machine Detection",
+            "MBC ID": "B0009",
+            "MBC Objective": "ANTI-BEHAVIORAL ANALYSIS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "compiled to the .NET platform",
+            "Namespace": "runtime/dotnet"
+          },
+          {
+            "Capability": "reference anti-VM strings targeting VMWare",
+            "Namespace": "anti-analysis/anti-vm/vm-detection"
+          },
+          {
+            "Capability": "reference anti-VM strings targeting VirtualBox",
+            "Namespace": "anti-analysis/anti-vm/vm-detection"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1497.001"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "This sample appears to be packed.\n\nPacked samples have often been obfuscated to hide their logic.\ncapa cannot handle obfuscation well. This means the results may be misleading or incomplete.\nIf possible, you should try to unpack this input file before analyzing it with capa.\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "File Limitation - (internal) packer file limitation",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1027.002",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information (Software Packing)"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1027.002"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Software Packing (Standard Compression)",
+            "MBC ID": "F0001.002",
+            "MBC Objective": "ANTI-STATIC ANALYSIS"
+          },
+          {
+            "MBC Behavior": "Software Packing (UPX)",
+            "MBC ID": "F0001.008",
+            "MBC Objective": "ANTI-STATIC ANALYSIS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "(internal) packer file limitation",
+            "Namespace": "internal/limitation/file"
+          },
+          {
+            "Capability": "packed with UPX",
+            "Namespace": "anti-analysis/packer/upx"
+          },
+          {
+            "Capability": "packed with generic packer",
+            "Namespace": "anti-analysis/packer/generic"
+          },
+          {
+            "Capability": "resolve function by parsing PE exports",
+            "Namespace": "load-code/pe"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1027.002"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

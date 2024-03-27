@@ -1,0 +1,173 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1082",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Information Discovery"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1082"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "System Information Discovery",
+            "MBC ID": "E1082",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "Writes File",
+            "MBC ID": "C0052",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Allocate Memory",
+            "MBC ID": "C0007",
+            "MBC Objective": "MEMORY"
+          },
+          {
+            "MBC Behavior": "Create Process",
+            "MBC ID": "C0017",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Create Process (Create Suspended Process)",
+            "MBC ID": "C0017.003",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Resume Thread",
+            "MBC ID": "C0054",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Terminate Process",
+            "MBC ID": "C0018",
+            "MBC Objective": "PROCESS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "allocate RWX memory",
+            "Namespace": "host-interaction/process/inject"
+          },
+          {
+            "Capability": "contain a thread local storage (.tls) section",
+            "Namespace": "executable/pe/section/tls"
+          },
+          {
+            "Capability": "create a process with modified I/O handles and window",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "create process on Windows",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "create process suspended",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "get thread local storage value",
+            "Namespace": "host-interaction/process"
+          },
+          {
+            "Capability": "query environment variable",
+            "Namespace": "host-interaction/environment-variable"
+          },
+          {
+            "Capability": "resume thread",
+            "Namespace": "host-interaction/thread/resume"
+          },
+          {
+            "Capability": "terminate process",
+            "Namespace": "host-interaction/process/terminate"
+          },
+          {
+            "Capability": "write file on Windows",
+            "Namespace": "host-interaction/file-system/write"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1082"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

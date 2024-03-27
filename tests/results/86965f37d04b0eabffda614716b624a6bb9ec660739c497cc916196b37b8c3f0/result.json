@@ -1,0 +1,174 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1027.005",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information (Indicator Removal from Tools)"
+          },
+          {
+            "ATT&CK ID": "T1614",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Location Discovery"
+          },
+          {
+            "ATT&CK ID": "T1129",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Shared Modules"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1027.005",
+            "T1614",
+            "T1129"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Executable Code Obfuscation (Argument Obfuscation)",
+            "MBC ID": "B0032.020",
+            "MBC Objective": "ANTI-STATIC ANALYSIS"
+          },
+          {
+            "MBC Behavior": "Executable Code Obfuscation (Stack Strings)",
+            "MBC ID": "B0032.017",
+            "MBC Objective": "ANTI-STATIC ANALYSIS"
+          },
+          {
+            "MBC Behavior": "Allocate Memory",
+            "MBC ID": "C0007",
+            "MBC Objective": "MEMORY"
+          },
+          {
+            "MBC Behavior": "Console",
+            "MBC ID": "C0033",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Allocate Thread Local Storage",
+            "MBC ID": "C0040",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Terminate Process",
+            "MBC ID": "C0018",
+            "MBC Objective": "PROCESS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "allocate RWX memory",
+            "Namespace": "host-interaction/process/inject"
+          },
+          {
+            "Capability": "allocate thread local storage",
+            "Namespace": "host-interaction/process"
+          },
+          {
+            "Capability": "contain obfuscated stackstrings",
+            "Namespace": "anti-analysis/obfuscation/string/stackstring"
+          },
+          {
+            "Capability": "contains PDB path",
+            "Namespace": "executable/pe/pdb"
+          },
+          {
+            "Capability": "get geographical location",
+            "Namespace": "collection"
+          },
+          {
+            "Capability": "link many functions at runtime",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
+            "Capability": "manipulate console buffer",
+            "Namespace": "host-interaction/console"
+          },
+          {
+            "Capability": "terminate process (3 matches)",
+            "Namespace": "host-interaction/process/terminate"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1027.005",
+          "T1614",
+          "T1129"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

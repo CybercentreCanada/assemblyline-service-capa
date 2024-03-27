@@ -59,7 +59,7 @@ class CAPA(ServiceBase):
         try:
             # Ruleset downloaded from https://github.com/fireeye/capa/tree/v6.1.0/sigs
             self.sig_paths = capa.main.get_signatures(Path(os.path.join(os.path.dirname(__file__), "sigs")))
-        except (IOError) as e:
+        except IOError as e:
             self.log.error("InvalidSignatureSet: %s", str(e))
             return -1
 
@@ -92,7 +92,7 @@ class CAPA(ServiceBase):
                 "error": "unsupported runtime or Python interpreter",
             }
         except Exception as e:
-            if request.file_type == "executable/windows/dos" or request.task.mime != "application/x-dosexec":
+            if request.file_type == "executable/windows/dos" or request.task.mime == "application/x-dosexec":
                 self.log.debug("Exception (dos file): %s", str(e))
             else:
                 self.log.error("Exception: %s", str(e))
@@ -105,8 +105,8 @@ class CAPA(ServiceBase):
         meta = capa.main.collect_metadata([], Path(path), format, capa.main.OS_AUTO, self.rule_paths, extractor)
         self.log.debug("Getting capa capabilities")
         capabilities, counts = capa.main.find_capabilities(rules, extractor, disable_progress=True)
-        meta.analysis.feature_counts = counts['feature_counts']
-        meta.analysis.library_functions = counts['library_functions']
+        meta.analysis.feature_counts = counts["feature_counts"]
+        meta.analysis.library_functions = counts["library_functions"]
         meta.analysis.layout = capa.main.compute_layout(rules, extractor, capabilities)
         self.log.debug("Got capa capabilities")
 
@@ -157,7 +157,7 @@ class CAPA(ServiceBase):
         res = ResultTableSection("ATT&CK")
         res.set_heuristic(1)
         for tactic, techniques in sorted(tactics.items()):
-            for (technique, subtechnique, id) in sorted(techniques):
+            for technique, subtechnique, id in sorted(techniques):
                 res.add_row(
                     TableRow(
                         {
@@ -176,7 +176,7 @@ class CAPA(ServiceBase):
         added = False
         res = ResultTableSection("Malware Behavior Catalog")
         for objective, behaviors in sorted(objectives.items()):
-            for (behavior, method, id) in sorted(behaviors):
+            for behavior, method, id in sorted(behaviors):
                 res.add_row(
                     TableRow(
                         {
@@ -270,6 +270,7 @@ class CAPA(ServiceBase):
         if request.file_size > self.config.get("max_file_size", 512000):
             return
 
+        # request.set_service_context(f"CAPA {self.get_tool_version()}")
         self.get_capa_results(request, self.rules, self.sig_paths, "auto", request.file_path)
 
     def get_tool_version(self):
