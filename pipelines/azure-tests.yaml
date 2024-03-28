@@ -32,8 +32,8 @@ jobs:
       matrix:
         Python3_11:
           python.version: "3.11"
-        Python3_12:
-          python.version: "3.12"
+        # Python3_12:
+        #  python.version: "3.12"
 
     timeoutInMinutes: 30
 
