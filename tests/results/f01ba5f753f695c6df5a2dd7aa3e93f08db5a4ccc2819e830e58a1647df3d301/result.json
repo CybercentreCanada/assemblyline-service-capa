@@ -96,7 +96,7 @@
         "auto_collapse": false,
         "body": [
           {
-            "Capability": "allocate RWX memory",
+            "Capability": "allocate or change RWX memory",
             "Namespace": "host-interaction/process/inject"
           },
           {

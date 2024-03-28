@@ -44,6 +44,31 @@
             "MBC Behavior": "Virtual Machine Detection",
             "MBC ID": "B0009",
             "MBC Objective": "ANTI-BEHAVIORAL ANALYSIS"
+          },
+          {
+            "MBC Behavior": "Read File",
+            "MBC ID": "C0051",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Create Process",
+            "MBC ID": "C0017",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Create Thread",
+            "MBC ID": "C0038",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Suspend Thread",
+            "MBC ID": "C0055",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Terminate Process",
+            "MBC ID": "C0018",
+            "MBC Objective": "PROCESS"
           }
         ],
         "body_config": {
@@ -66,8 +91,32 @@
         "auto_collapse": false,
         "body": [
           {
+            "Capability": "access .NET resource",
+            "Namespace": "executable/resource"
+          },
+          {
             "Capability": "compiled to the .NET platform",
             "Namespace": "runtime/dotnet"
+          },
+          {
+            "Capability": "create a process with modified I/O handles and window",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "create process on Windows (2 matches)",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "create thread (3 matches)",
+            "Namespace": "host-interaction/thread/create"
+          },
+          {
+            "Capability": "find data using regex in .NET",
+            "Namespace": "data-manipulation/regex"
+          },
+          {
+            "Capability": "read file on Windows (3 matches)",
+            "Namespace": "host-interaction/file-system/read"
           },
           {
             "Capability": "reference anti-VM strings targeting VMWare",
@@ -76,6 +125,14 @@
           {
             "Capability": "reference anti-VM strings targeting VirtualBox",
             "Namespace": "anti-analysis/anti-vm/vm-detection"
+          },
+          {
+            "Capability": "suspend thread",
+            "Namespace": "host-interaction/thread/suspend"
+          },
+          {
+            "Capability": "terminate process (3 matches)",
+            "Namespace": "host-interaction/process/terminate"
           }
         ],
         "body_config": {

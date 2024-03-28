@@ -5,19 +5,6 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "This sample appears to be packed.\n\nPacked samples have often been obfuscated to hide their logic.\ncapa cannot handle obfuscation well. This means the results may be misleading or incomplete.\nIf possible, you should try to unpack this input file before analyzing it with capa.\n",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "File Limitation - (internal) packer file limitation",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
         "body": [
           {
             "ATT&CK ID": "T1027.002",

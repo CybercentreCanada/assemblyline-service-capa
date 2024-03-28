@@ -10,6 +10,11 @@
             "MBC Behavior": "Writes File",
             "MBC ID": "C0052",
             "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Terminate Process",
+            "MBC ID": "C0018",
+            "MBC Objective": "PROCESS"
           }
         ],
         "body_config": {
@@ -31,6 +36,10 @@
       {
         "auto_collapse": false,
         "body": [
+          {
+            "Capability": "terminate process (3 matches)",
+            "Namespace": "host-interaction/process/terminate"
+          },
           {
             "Capability": "write file on Windows (2 matches)",
             "Namespace": "host-interaction/file-system/write"

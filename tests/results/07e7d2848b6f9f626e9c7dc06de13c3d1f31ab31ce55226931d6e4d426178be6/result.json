@@ -87,6 +87,11 @@
             "MBC Objective": "DATA"
           },
           {
+            "MBC Behavior": "Obfuscated Files or Information (Encoding-Custom Algorithm)",
+            "MBC ID": "E1027.m03",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
             "MBC Behavior": "Obfuscated Files or Information (Encoding-Standard Algorithm)",
             "MBC ID": "E1027.m02",
             "MBC Objective": "DEFENSE EVASION"
@@ -162,6 +167,10 @@
           {
             "Capability": "create process on Windows",
             "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "encode data using ADD XOR SUB operations",
+            "Namespace": "data-manipulation/encoding"
           },
           {
             "Capability": "encode data using XOR",

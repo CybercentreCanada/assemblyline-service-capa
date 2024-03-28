@@ -146,7 +146,7 @@
           },
           {
             "Capability": "allocate thread local storage",
-            "Namespace": "host-interaction/process"
+            "Namespace": "host-interaction/thread/tls"
           },
           {
             "Capability": "check if file exists (2 matches)",

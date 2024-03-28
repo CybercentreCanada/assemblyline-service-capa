@@ -341,7 +341,7 @@
           },
           {
             "Capability": "set thread local storage value",
-            "Namespace": "host-interaction/process"
+            "Namespace": "host-interaction/thread/tls"
           },
           {
             "Capability": "terminate process",

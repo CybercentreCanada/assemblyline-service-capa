@@ -5,19 +5,6 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "This sample appears to be an installer.\n\ncapa cannot handle installers well. This means the results may be misleading or incomplete.\nYou should try to understand the install mechanism and analyze created files with capa.\n",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "File Limitation - (internal) installer file limitation",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
         "body": [
           {
             "ATT&CK ID": "T1027",

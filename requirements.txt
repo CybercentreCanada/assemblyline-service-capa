@@ -1,1 +1,1 @@
-flare-capa==6.1.0
+flare-capa==7.0.1

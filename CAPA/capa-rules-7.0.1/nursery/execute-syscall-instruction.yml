@@ -1,0 +1,19 @@
+rule:
+  meta:
+    name: execute syscall instruction
+    namespace: anti-analysis
+    authors:
+      - "@kulinacs"
+      - "@mr-tz"
+    description: may be used to evade hooks or hinder analysis
+    scopes:
+      static: basic block
+      dynamic: unsupported  # requires mnemonic features
+    references:
+      - https://github.com/j00ru/windows-syscalls
+  features:
+    - and:
+      - mnemonic: syscall
+      - or:
+        - mnemonic: ret
+        - mnemonic: retn

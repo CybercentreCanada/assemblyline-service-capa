@@ -104,7 +104,7 @@
           },
           {
             "Capability": "allocate thread local storage",
-            "Namespace": "host-interaction/process"
+            "Namespace": "host-interaction/thread/tls"
           },
           {
             "Capability": "clear Windows event logs",

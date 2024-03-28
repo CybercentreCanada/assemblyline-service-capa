@@ -7,6 +7,11 @@
         "auto_collapse": false,
         "body": [
           {
+            "ATT&CK ID": "T1027.005",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information (Indicator Removal from Tools)"
+          },
+          {
             "ATT&CK ID": "T1082",
             "ATT&CK Tactic": "DISCOVERY",
             "ATT&CK Technique": "System Information Discovery"
@@ -24,6 +29,7 @@
         "depth": 0,
         "heuristic": {
           "attack_ids": [
+            "T1027.005",
             "T1082"
           ],
           "frequency": 1,
@@ -40,6 +46,16 @@
       {
         "auto_collapse": false,
         "body": [
+          {
+            "MBC Behavior": "Executable Code Obfuscation (Argument Obfuscation)",
+            "MBC ID": "B0032.020",
+            "MBC Objective": "ANTI-STATIC ANALYSIS"
+          },
+          {
+            "MBC Behavior": "Executable Code Obfuscation (Stack Strings)",
+            "MBC ID": "B0032.017",
+            "MBC Objective": "ANTI-STATIC ANALYSIS"
+          },
           {
             "MBC Behavior": "System Information Discovery",
             "MBC ID": "E1082",
@@ -68,6 +84,10 @@
           {
             "Capability": "check OS version (2 matches)",
             "Namespace": "host-interaction/os/version"
+          },
+          {
+            "Capability": "contain obfuscated stackstrings",
+            "Namespace": "anti-analysis/obfuscation/string/stackstring"
           },
           {
             "Capability": "contains PDB path",
@@ -99,6 +119,7 @@
     "heuristics": [
       {
         "attack_ids": [
+          "T1027.005",
           "T1082"
         ],
         "heur_id": 1,
