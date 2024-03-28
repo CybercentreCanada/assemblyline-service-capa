@@ -93,6 +93,16 @@ class CAPA(ServiceBase):
         meta = capa.loader.collect_metadata(argv, args.input_file, "auto", os_, [], extractor, counts)
         meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities)
 
+        file_limitation_rules = list(filter(lambda r: r.is_file_limitation_rule(), rules.rules.values()))
+        for file_limitation_rule in file_limitation_rules:
+            if file_limitation_rule.name not in capabilities:
+                continue
+
+            res = ResultSection(f"File Limitation - {file_limitation_rule.name}")
+            res.add_line(file_limitation_rule.meta.get("description", ""))
+            request.result.add_section(res)
+            break
+
         doc = rd.ResultDocument.from_capa(meta, rules, capabilities)
 
         renderer = safely_get_param(request, "renderer", "default")
