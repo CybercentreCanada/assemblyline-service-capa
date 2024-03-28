@@ -1,0 +1,361 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1115",
+            "ATT&CK Tactic": "COLLECTION",
+            "ATT&CK Technique": "Clipboard Data"
+          },
+          {
+            "ATT&CK ID": "T1113",
+            "ATT&CK Tactic": "COLLECTION",
+            "ATT&CK Technique": "Screen Capture"
+          },
+          {
+            "ATT&CK ID": "T1564.003",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Hide Artifacts (Hidden Window)"
+          },
+          {
+            "ATT&CK ID": "T1112",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Modify Registry"
+          },
+          {
+            "ATT&CK ID": "T1027",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information"
+          },
+          {
+            "ATT&CK ID": "T1083",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "File and Directory Discovery"
+          },
+          {
+            "ATT&CK ID": "T1012",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "Query Registry"
+          },
+          {
+            "ATT&CK ID": "T1082",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Information Discovery"
+          },
+          {
+            "ATT&CK ID": "T1614",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Location Discovery"
+          },
+          {
+            "ATT&CK ID": "T1059",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Command and Scripting Interpreter"
+          },
+          {
+            "ATT&CK ID": "T1129",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Shared Modules"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1115",
+            "T1113",
+            "T1564.003",
+            "T1112",
+            "T1027",
+            "T1083",
+            "T1012",
+            "T1082",
+            "T1614",
+            "T1059",
+            "T1129"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Screen Capture (WinAPI)",
+            "MBC ID": "E1113.m01",
+            "MBC Objective": "COLLECTION"
+          },
+          {
+            "MBC Behavior": "Check String",
+            "MBC ID": "C0019",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Encode Data (Base64)",
+            "MBC ID": "C0026.001",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Encode Data (XOR)",
+            "MBC ID": "C0026.002",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Obfuscated Files or Information (Encoding-Standard Algorithm)",
+            "MBC ID": "E1027.m02",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
+            "MBC Behavior": "Analysis Tool Discovery (Process detection)",
+            "MBC ID": "B0013.001",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "File and Directory Discovery",
+            "MBC ID": "E1083",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "System Information Discovery",
+            "MBC ID": "E1082",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "Command and Scripting Interpreter",
+            "MBC ID": "E1059",
+            "MBC Objective": "EXECUTION"
+          },
+          {
+            "MBC Behavior": "Read File",
+            "MBC ID": "C0051",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Clipboard Modification",
+            "MBC ID": "E1510",
+            "MBC Objective": "IMPACT"
+          },
+          {
+            "MBC Behavior": "Allocate Memory",
+            "MBC ID": "C0007",
+            "MBC Objective": "MEMORY"
+          },
+          {
+            "MBC Behavior": "Registry (Delete Registry Value)",
+            "MBC ID": "C0036.007",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Registry (Query Registry Value)",
+            "MBC ID": "C0036.006",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Registry (Set Registry Key)",
+            "MBC ID": "C0036.001",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Check Mutex",
+            "MBC ID": "C0043",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Create Mutex",
+            "MBC ID": "C0042",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Create Process",
+            "MBC ID": "C0017",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Create Thread",
+            "MBC ID": "C0038",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Resume Thread",
+            "MBC ID": "C0054",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Terminate Process",
+            "MBC ID": "C0018",
+            "MBC Objective": "PROCESS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "accept command line arguments",
+            "Namespace": "host-interaction/cli"
+          },
+          {
+            "Capability": "capture screenshot (2 matches)",
+            "Namespace": "collection/screenshot"
+          },
+          {
+            "Capability": "check OS version",
+            "Namespace": "host-interaction/os/version"
+          },
+          {
+            "Capability": "check mutex and exit (3 matches)",
+            "Namespace": "host-interaction/mutex"
+          },
+          {
+            "Capability": "contains PDB path",
+            "Namespace": "executable/pe/pdb"
+          },
+          {
+            "Capability": "create process on Windows (2 matches)",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "create thread (3 matches)",
+            "Namespace": "host-interaction/thread/create"
+          },
+          {
+            "Capability": "delete registry value",
+            "Namespace": "host-interaction/registry/delete"
+          },
+          {
+            "Capability": "encode data using XOR",
+            "Namespace": "data-manipulation/encoding/xor"
+          },
+          {
+            "Capability": "execute shellcode via indirect call",
+            "Namespace": "load-code/shellcode"
+          },
+          {
+            "Capability": "get common file path",
+            "Namespace": "host-interaction/file-system"
+          },
+          {
+            "Capability": "get geographical location",
+            "Namespace": "collection"
+          },
+          {
+            "Capability": "hide graphical window (3 matches)",
+            "Namespace": "host-interaction/gui/window/hide"
+          },
+          {
+            "Capability": "link function at runtime on Windows (5 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
+            "Capability": "query or enumerate registry value (10 matches)",
+            "Namespace": "host-interaction/registry"
+          },
+          {
+            "Capability": "read file via mapping (3 matches)",
+            "Namespace": "host-interaction/file-system/read"
+          },
+          {
+            "Capability": "reference Base64 string",
+            "Namespace": "data-manipulation/encoding/base64"
+          },
+          {
+            "Capability": "reference analysis tools strings",
+            "Namespace": "anti-analysis"
+          },
+          {
+            "Capability": "resume thread (3 matches)",
+            "Namespace": "host-interaction/thread/resume"
+          },
+          {
+            "Capability": "set registry value (3 matches)",
+            "Namespace": "host-interaction/registry/create"
+          },
+          {
+            "Capability": "terminate process",
+            "Namespace": "host-interaction/process/terminate"
+          },
+          {
+            "Capability": "write clipboard data",
+            "Namespace": "host-interaction/clipboard"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1115",
+          "T1113",
+          "T1564.003",
+          "T1112",
+          "T1027",
+          "T1083",
+          "T1012",
+          "T1082",
+          "T1614",
+          "T1059",
+          "T1129"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

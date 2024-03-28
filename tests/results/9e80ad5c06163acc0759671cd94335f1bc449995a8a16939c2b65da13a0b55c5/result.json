@@ -1,0 +1,168 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "This sample appears to be an installer.\n\ncapa cannot handle installers well. This means the results may be misleading or incomplete.\nYou should try to understand the install mechanism and analyze created files with capa.\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "File Limitation - (internal) installer file limitation",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1027",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1027"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Generate Pseudo-random Sequence",
+            "MBC ID": "C0021",
+            "MBC Objective": "CRYPTOGRAPHY"
+          },
+          {
+            "MBC Behavior": "Checksum (CRC32)",
+            "MBC ID": "C0032.001",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Encode Data (XOR)",
+            "MBC ID": "C0026.002",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Obfuscated Files or Information (Encoding-Standard Algorithm)",
+            "MBC ID": "E1027.m02",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
+            "MBC Behavior": "Analysis Tool Discovery (Process detection)",
+            "MBC ID": "B0013.001",
+            "MBC Objective": "DISCOVERY"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "(internal) installer file limitation",
+            "Namespace": "internal/limitation/file"
+          },
+          {
+            "Capability": "compiled with Borland Delphi",
+            "Namespace": "compiler/delphi"
+          },
+          {
+            "Capability": "contain a thread local storage (.tls) section",
+            "Namespace": "executable/pe/section/tls"
+          },
+          {
+            "Capability": "encode data using XOR (4 matches)",
+            "Namespace": "data-manipulation/encoding/xor"
+          },
+          {
+            "Capability": "generate random numbers using the Delphi LCG",
+            "Namespace": "data-manipulation/prng/lcg"
+          },
+          {
+            "Capability": "hash data with CRC32",
+            "Namespace": "data-manipulation/checksum/crc32"
+          },
+          {
+            "Capability": "packaged as an Inno Setup installer",
+            "Namespace": "executable/installer/inno-setup"
+          },
+          {
+            "Capability": "reference analysis tools strings",
+            "Namespace": "anti-analysis"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1027"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

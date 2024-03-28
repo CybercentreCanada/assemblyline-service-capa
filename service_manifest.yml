@@ -38,4 +38,5 @@ heuristics:
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-capa:$SERVICE_TAG
   cpu_cores: 1
+  ram_mb_min: 3078
   ram_mb: 4096

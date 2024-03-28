@@ -1,0 +1,138 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1012",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "Query Registry"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1012"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Install Driver (Minifilter)",
+            "MBC ID": "C0037.001",
+            "MBC Objective": "HARDWARE"
+          },
+          {
+            "MBC Behavior": "Load Driver (Minifilter)",
+            "MBC ID": "C0023.001",
+            "MBC Objective": "HARDWARE"
+          },
+          {
+            "MBC Behavior": "Registry (Query Registry Value)",
+            "MBC ID": "C0036.006",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Create Thread",
+            "MBC ID": "C0038",
+            "MBC Objective": "PROCESS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "contains PDB path",
+            "Namespace": "executable/pe/pdb"
+          },
+          {
+            "Capability": "create thread",
+            "Namespace": "host-interaction/thread/create"
+          },
+          {
+            "Capability": "query or enumerate registry value",
+            "Namespace": "host-interaction/registry"
+          },
+          {
+            "Capability": "register minifilter driver",
+            "Namespace": "host-interaction/filter"
+          },
+          {
+            "Capability": "start minifilter driver",
+            "Namespace": "host-interaction/filter"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1012"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

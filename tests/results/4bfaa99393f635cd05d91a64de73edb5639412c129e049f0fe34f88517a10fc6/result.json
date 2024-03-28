@@ -1,0 +1,149 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1012",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "Query Registry"
+          },
+          {
+            "ATT&CK ID": "T1082",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Information Discovery"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1012",
+            "T1082"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "System Information Discovery",
+            "MBC ID": "E1082",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "Registry (Query Registry Key)",
+            "MBC ID": "C0036.005",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Registry (Query Registry Value)",
+            "MBC ID": "C0036.006",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Registry (Set Registry Key)",
+            "MBC ID": "C0036.001",
+            "MBC Objective": "OPERATING SYSTEM"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "check OS version (3 matches)",
+            "Namespace": "host-interaction/os/version"
+          },
+          {
+            "Capability": "contains PDB path",
+            "Namespace": "executable/pe/pdb"
+          },
+          {
+            "Capability": "create device object",
+            "Namespace": "host-interaction/driver"
+          },
+          {
+            "Capability": "query or enumerate registry key",
+            "Namespace": "host-interaction/registry"
+          },
+          {
+            "Capability": "query or enumerate registry value (5 matches)",
+            "Namespace": "host-interaction/registry"
+          },
+          {
+            "Capability": "set registry value (3 matches)",
+            "Namespace": "host-interaction/registry/create"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1012",
+          "T1082"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "ATT&CK ID": "T1222",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "File and Directory Permissions Modification"
+          },
+          {
+            "ATT&CK ID": "T1027",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Obfuscated Files or Information"
+          },
+          {
+            "ATT&CK ID": "T1083",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "File and Directory Discovery"
+          },
+          {
+            "ATT&CK ID": "T1012",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "Query Registry"
+          },
+          {
+            "ATT&CK ID": "T1082",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Information Discovery"
+          },
+          {
+            "ATT&CK ID": "T1614",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "System Location Discovery"
+          },
+          {
+            "ATT&CK ID": "T1059",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Command and Scripting Interpreter"
+          },
+          {
+            "ATT&CK ID": "T1129",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Shared Modules"
+          },
+          {
+            "ATT&CK ID": "T1547.009",
+            "ATT&CK Tactic": "PERSISTENCE",
+            "ATT&CK Technique": "Boot or Logon Autostart Execution (Shortcut Modification)"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "ATT&CK Tactic",
+            "ATT&CK Technique",
+            "ATT&CK ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [
+            "T1222",
+            "T1027",
+            "T1083",
+            "T1012",
+            "T1082",
+            "T1614",
+            "T1059",
+            "T1129",
+            "T1547.009"
+          ],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ATT&CK",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "MBC Behavior": "Encrypt Data (RC4)",
+            "MBC ID": "C0027.009",
+            "MBC Objective": "CRYPTOGRAPHY"
+          },
+          {
+            "MBC Behavior": "Encryption Key (RC4 KSA)",
+            "MBC ID": "C0028.002",
+            "MBC Objective": "CRYPTOGRAPHY"
+          },
+          {
+            "MBC Behavior": "Generate Pseudo-random Sequence",
+            "MBC ID": "C0021",
+            "MBC Objective": "CRYPTOGRAPHY"
+          },
+          {
+            "MBC Behavior": "Checksum (CRC32)",
+            "MBC ID": "C0032.001",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Encode Data (XOR)",
+            "MBC ID": "C0026.002",
+            "MBC Objective": "DATA"
+          },
+          {
+            "MBC Behavior": "Obfuscated Files or Information (Encoding-Standard Algorithm)",
+            "MBC ID": "E1027.m02",
+            "MBC Objective": "DEFENSE EVASION"
+          },
+          {
+            "MBC Behavior": "File and Directory Discovery",
+            "MBC ID": "E1083",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "System Information Discovery",
+            "MBC ID": "E1082",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
+            "MBC Behavior": "Command and Scripting Interpreter",
+            "MBC ID": "E1059",
+            "MBC Objective": "EXECUTION"
+          },
+          {
+            "MBC Behavior": "Create Directory",
+            "MBC ID": "C0046",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Delete Directory",
+            "MBC ID": "C0048",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Delete File",
+            "MBC ID": "C0047",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Get File Attributes",
+            "MBC ID": "C0049",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Move File",
+            "MBC ID": "C0063",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Read File",
+            "MBC ID": "C0051",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Set File Attributes",
+            "MBC ID": "C0050",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Writes File",
+            "MBC ID": "C0052",
+            "MBC Objective": "FILE SYSTEM"
+          },
+          {
+            "MBC Behavior": "Allocate Memory",
+            "MBC ID": "C0007",
+            "MBC Objective": "MEMORY"
+          },
+          {
+            "MBC Behavior": "Registry (Query Registry Value)",
+            "MBC ID": "C0036.006",
+            "MBC Objective": "OPERATING SYSTEM"
+          },
+          {
+            "MBC Behavior": "Create Process",
+            "MBC ID": "C0017",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Create Thread",
+            "MBC ID": "C0038",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Set Thread Local Storage Value",
+            "MBC ID": "C0041",
+            "MBC Objective": "PROCESS"
+          },
+          {
+            "MBC Behavior": "Terminate Process",
+            "MBC ID": "C0018",
+            "MBC Objective": "PROCESS"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "MBC Objective",
+            "MBC Behavior",
+            "MBC ID"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Malware Behavior Catalog",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          {
+            "Capability": "accept command line arguments (2 matches)",
+            "Namespace": "host-interaction/cli"
+          },
+          {
+            "Capability": "check if file exists (2 matches)",
+            "Namespace": "host-interaction/file-system/exists"
+          },
+          {
+            "Capability": "compiled with Borland Delphi",
+            "Namespace": "compiler/delphi"
+          },
+          {
+            "Capability": "contain a thread local storage (.tls) section",
+            "Namespace": "executable/pe/section/tls"
+          },
+          {
+            "Capability": "create directory",
+            "Namespace": "host-interaction/file-system/create"
+          },
+          {
+            "Capability": "create process on Windows",
+            "Namespace": "host-interaction/process/create"
+          },
+          {
+            "Capability": "create shortcut via IShellLink",
+            "Namespace": "persistence"
+          },
+          {
+            "Capability": "create thread",
+            "Namespace": "host-interaction/thread/create"
+          },
+          {
+            "Capability": "delete directory",
+            "Namespace": "host-interaction/file-system/delete"
+          },
+          {
+            "Capability": "delete file (7 matches)",
+            "Namespace": "host-interaction/file-system/delete"
+          },
+          {
+            "Capability": "encode data using XOR",
+            "Namespace": "data-manipulation/encoding/xor"
+          },
+          {
+            "Capability": "encrypt data using RC4 KSA",
+            "Namespace": "data-manipulation/encryption/rc4"
+          },
+          {
+            "Capability": "enumerate files recursively",
+            "Namespace": "host-interaction/file-system/files/list"
+          },
+          {
+            "Capability": "execute shellcode via indirect call (3 matches)",
+            "Namespace": "load-code/shellcode"
+          },
+          {
+            "Capability": "extract resource via kernel32 functions (3 matches)",
+            "Namespace": "executable/resource"
+          },
+          {
+            "Capability": "generate random numbers using the Delphi LCG",
+            "Namespace": "data-manipulation/prng/lcg"
+          },
+          {
+            "Capability": "get common file path (2 matches)",
+            "Namespace": "host-interaction/file-system"
+          },
+          {
+            "Capability": "get disk information",
+            "Namespace": "host-interaction/hardware/storage"
+          },
+          {
+            "Capability": "get disk size",
+            "Namespace": "host-interaction/hardware/storage"
+          },
+          {
+            "Capability": "get file attributes (2 matches)",
+            "Namespace": "host-interaction/file-system/meta"
+          },
+          {
+            "Capability": "get file size (4 matches)",
+            "Namespace": "host-interaction/file-system/meta"
+          },
+          {
+            "Capability": "get geographical location (6 matches)",
+            "Namespace": "collection"
+          },
+          {
+            "Capability": "get thread local storage value",
+            "Namespace": "host-interaction/process"
+          },
+          {
+            "Capability": "hash data with CRC32",
+            "Namespace": "data-manipulation/checksum/crc32"
+          },
+          {
+            "Capability": "link function at runtime on Windows (10 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
+            "Capability": "move file (2 matches)",
+            "Namespace": "host-interaction/file-system/move"
+          },
+          {
+            "Capability": "query or enumerate registry value (3 matches)",
+            "Namespace": "host-interaction/registry"
+          },
+          {
+            "Capability": "read file on Windows (5 matches)",
+            "Namespace": "host-interaction/file-system/read"
+          },
+          {
+            "Capability": "set file attributes",
+            "Namespace": "host-interaction/file-system/meta"
+          },
+          {
+            "Capability": "set thread local storage value",
+            "Namespace": "host-interaction/thread/tls"
+          },
+          {
+            "Capability": "terminate process",
+            "Namespace": "host-interaction/process/terminate"
+          },
+          {
+            "Capability": "write file on Windows (5 matches)",
+            "Namespace": "host-interaction/file-system/write"
+          }
+        ],
+        "body_config": {
+          "column_order": [
+            "Capability",
+            "Namespace"
+          ]
+        },
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Capabilities",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [
+          "T1222",
+          "T1027",
+          "T1083",
+          "T1012",
+          "T1082",
+          "T1614",
+          "T1059",
+          "T1129",
+          "T1547.009"
+        ],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

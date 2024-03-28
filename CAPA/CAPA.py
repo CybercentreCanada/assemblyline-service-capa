@@ -1,7 +1,7 @@
+import argparse
 import os
 import string
 from collections import defaultdict
-from pathlib import Path
 
 import capa.engine
 import capa.main
@@ -18,7 +18,6 @@ from assemblyline_v4_service.common.result import (
 )
 from capa.render.default import find_subrule_matches
 from capa.render.utils import capability_rules
-from capa.rules import InvalidRule, InvalidRuleSet
 
 
 def safely_get_param(request: ServiceRequest, param, default):
@@ -46,71 +45,55 @@ class CAPA(ServiceBase):
             f"locations: {self.locations}"
             ")"
         )
-        self.rule_paths = [Path(os.path.join(os.path.dirname(__file__), "capa-rules-6.1.0"))]
+        self.parser = argparse.ArgumentParser(description="detect capabilities in programs.")
+        capa.main.install_common_args(
+            self.parser, wanted={"rules", "signatures", "format", "os", "backend", "input_file"}
+        )
+        self.argv = [
+            "--quiet",
+            "--signatures",
+            os.path.join(os.path.dirname(__file__), "sigs"),
+            "--rules",
+            os.path.join(os.path.dirname(__file__), "capa-rules-7.0.1"),
+            "--format",
+            "auto",
+            "--backend",
+            "auto",
+            "--os",
+            "auto",
+        ]
+
+    def get_capa_results(self, request: ServiceRequest, input_file):
+        # Mostly taken from https://github.com/mandiant/capa/blob/v7.0.1/scripts/bulk-process.py
+        argv = self.argv + [input_file]
+        args = self.parser.parse_args(args=argv)
 
         try:
-            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v6.1.0.zip
-            self.rules = capa.main.get_rules(self.rule_paths)
-            self.log.info("successfully loaded %s rules", len(self.rules))
-        except (IOError, InvalidRule, InvalidRuleSet) as e:
-            self.log.error("InvalidRuleSet: %s", str(e))
-            return -1
-
-        try:
-            # Ruleset downloaded from https://github.com/fireeye/capa/tree/v6.1.0/sigs
-            self.sig_paths = capa.main.get_signatures(Path(os.path.join(os.path.dirname(__file__), "sigs")))
-        except (IOError) as e:
-            self.log.error("InvalidSignatureSet: %s", str(e))
-            return -1
-
-    def get_capa_results(self, request: ServiceRequest, rules, sigpaths, format, path):
-        # Parts taken from https://github.com/mandiant/capa/blob/master/scripts/bulk-process.py
-        should_save_workspace = os.environ.get("CAPA_SAVE_WORKSPACE") not in ("0", "no", "NO", "n", None)
-        self.log.debug("Getting capa extractor for: %s", path)
-        try:
-            extractor = capa.main.get_extractor(
-                Path(path),
-                format,
-                capa.main.OS_AUTO,
-                capa.main.BACKEND_VIV,
-                sigpaths,
-                should_save_workspace,
-                disable_progress=True,
-            )
-        except capa.main.UnsupportedFormatError as e:
-            self.log.error("UnsupportedFormatError: %s", str(e))
-            return {
-                "path": path,
-                "status": "error",
-                "error": "input file does not appear to be a PE file: %s" % path,
-            }
-        except capa.main.UnsupportedRuntimeError as e:
-            self.log.error("UnsupportedRuntimeError: %s", str(e))
-            return {
-                "path": path,
-                "status": "error",
-                "error": "unsupported runtime or Python interpreter",
-            }
-        except Exception as e:
-            if request.file_type == "executable/windows/dos" or request.task.mime != "application/x-dosexec":
-                self.log.debug("Exception (dos file): %s", str(e))
+            capa.main.handle_common_args(args)
+            capa.main.ensure_input_exists_from_cli(args)
+            input_format = capa.main.get_input_format_from_cli(args)
+            rules = capa.main.get_rules_from_cli(args)
+            backend = capa.main.get_backend_from_cli(args, input_format)
+            sample_path = capa.main.get_sample_path_from_cli(args, backend)
+            if sample_path is None:
+                os_ = "unknown"
             else:
-                self.log.error("Exception: %s", str(e))
+                os_ = capa.loader.get_os(sample_path)
+            extractor = capa.main.get_extractor_from_cli(args, input_format, backend)
+        except capa.main.ShouldExitError as e:
+            return {"path": input_file, "status": "error", "error": str(e), "status_code": e.status_code}
+        except Exception as e:
             return {
-                "path": path,
+                "path": input_file,
                 "status": "error",
-                "error": "unexpected error: %s" % (e),
+                "error": f"unexpected error: {e}",
             }
+        capabilities, counts = capa.capabilities.common.find_capabilities(rules, extractor, disable_progress=True)
 
-        meta = capa.main.collect_metadata([], Path(path), format, capa.main.OS_AUTO, self.rule_paths, extractor)
-        self.log.debug("Getting capa capabilities")
-        capabilities, counts = capa.main.find_capabilities(rules, extractor, disable_progress=True)
-        meta.analysis.feature_counts = counts['feature_counts']
-        meta.analysis.library_functions = counts['library_functions']
-        meta.analysis.layout = capa.main.compute_layout(rules, extractor, capabilities)
-        self.log.debug("Got capa capabilities")
+        meta = capa.loader.collect_metadata(argv, args.input_file, "auto", os_, [], extractor, counts)
+        meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities)
 
-        file_limitation_rules = list(filter(capa.main.is_file_limitation_rule, rules.rules.values()))
+        file_limitation_rules = list(filter(lambda r: r.is_file_limitation_rule(), rules.rules.values()))
         for file_limitation_rule in file_limitation_rules:
             if file_limitation_rule.name not in capabilities:
                 continue
@@ -129,6 +112,8 @@ class CAPA(ServiceBase):
             self.render_rules(request, doc)
         else:
             self.default_view(request, doc)
+
+        return {"path": input_file, "status": "ok", "ok": doc.model_dump()}
 
     def default_view(self, request, doc: rd.ResultDocument):
         tactics = defaultdict(set)
@@ -157,7 +142,7 @@ class CAPA(ServiceBase):
         res = ResultTableSection("ATT&CK")
         res.set_heuristic(1)
         for tactic, techniques in sorted(tactics.items()):
-            for (technique, subtechnique, id) in sorted(techniques):
+            for technique, subtechnique, id in sorted(techniques):
                 res.add_row(
                     TableRow(
                         {
@@ -176,7 +161,7 @@ class CAPA(ServiceBase):
         added = False
         res = ResultTableSection("Malware Behavior Catalog")
         for objective, behaviors in sorted(objectives.items()):
-            for (behavior, method, id) in sorted(behaviors):
+            for behavior, method, id in sorted(behaviors):
                 res.add_row(
                     TableRow(
                         {
@@ -270,7 +255,16 @@ class CAPA(ServiceBase):
         if request.file_size > self.config.get("max_file_size", 512000):
             return
 
-        self.get_capa_results(request, self.rules, self.sig_paths, "auto", request.file_path)
+        request.set_service_context(f"CAPA {self.get_tool_version()}")
+
+        result = self.get_capa_results(request, request.file_path)
+        if result["status"] == "error":
+            self.log.error(result["error"])
+        elif result["status"] == "ok":
+            pass
+            # doc = rd.ResultDocument.model_validate(result["ok"]).model_dump_json(exclude_none=True)
+        else:
+            raise ValueError(f"unexpected status: {result['status']}")
 
     def get_tool_version(self):
         return capa.version.__version__
