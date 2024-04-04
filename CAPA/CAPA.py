@@ -52,8 +52,10 @@ class CAPA(ServiceBase):
         self.argv = [
             "--quiet",
             "--signatures",
+            # Ruleset downloaded from https://github.com/fireeye/capa/tree/v7.0.1/sigs
             os.path.join(os.path.dirname(__file__), "sigs"),
             "--rules",
+            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v7.0.1.zip
             os.path.join(os.path.dirname(__file__), "capa-rules-7.0.1"),
             "--format",
             "auto",
@@ -80,6 +82,7 @@ class CAPA(ServiceBase):
             else:
                 os_ = capa.loader.get_os(sample_path)
             extractor = capa.main.get_extractor_from_cli(args, input_format, backend)
+            capabilities, counts = capa.capabilities.common.find_capabilities(rules, extractor, disable_progress=True)
         except capa.main.ShouldExitError as e:
             return {"path": input_file, "status": "error", "error": str(e), "status_code": e.status_code}
         except Exception as e:
@@ -88,7 +91,6 @@ class CAPA(ServiceBase):
                 "status": "error",
                 "error": f"unexpected error: {e}",
             }
-        capabilities, counts = capa.capabilities.common.find_capabilities(rules, extractor, disable_progress=True)
 
         meta = capa.loader.collect_metadata(argv, args.input_file, "auto", os_, [], extractor, counts)
         meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities)
