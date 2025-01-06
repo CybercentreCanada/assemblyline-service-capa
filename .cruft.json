@@ -1,22 +1,22 @@
 {
   "template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
-  "commit": "6a32666117e30dbfb990bfaf6e7c9eb25badd03a",
+  "commit": "99becf8ed2990a4063a5bb1f8ce878824a5a1a7b",
   "checkout": null,
   "context": {
     "cookiecutter": {
       "service_name": "CAPA",
       "__svc_name": "CAPA",
-      "__repository": "assemblyline-service-capa",
+      "__repository": "assemblyline-service-CAPA",
       "__pkg_name": "CAPA",
+      "class_name": "CAPA",
       "short_description": "This service uses the CAPA open source library to identify what the program at hand could do.",
-      "short_description_fr": "Ce service utilise la biblioth\u00e8que open source CAPA pour identifier ce que le programme en question peut faire.",
+      "short_description_fr": "Ce service utilise la bibliothèque open source CAPA pour identifier ce que le programme en question peut faire.",
       "stage": "CORE",
       "category": "Static Analysis",
       "org_name_full": "CybercentreCanada",
       "org_name_short": "cccs",
       "license": "mit",
-      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
-      "class_name": "CAPA"
+      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git"
     }
   },
   "directory": null
