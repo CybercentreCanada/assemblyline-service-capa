@@ -8,15 +8,15 @@
       "__svc_name": "CAPA",
       "__repository": "assemblyline-service-capa",
       "__pkg_name": "CAPA",
-      "__class_name": "CAPA",
       "short_description": "This service uses the CAPA open source library to identify what the program at hand could do.",
-      "short_description_fr": "Ce service utilise la bibliothèque open source CAPA pour identifier ce que le programme en question peut faire.",
+      "short_description_fr": "Ce service utilise la biblioth\u00e8que open source CAPA pour identifier ce que le programme en question peut faire.",
       "stage": "CORE",
       "category": "Static Analysis",
       "org_name_full": "CybercentreCanada",
       "org_name_short": "cccs",
       "license": "mit",
-      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git"
+      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
+      "class_name": "CAPA"
     }
   },
   "directory": null
