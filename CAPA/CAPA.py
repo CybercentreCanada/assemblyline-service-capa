@@ -82,7 +82,7 @@ class CAPA(ServiceBase):
             else:
                 os_ = capa.loader.get_os(sample_path)
             extractor = capa.main.get_extractor_from_cli(args, input_format, backend)
-            capabilities, counts = capa.capabilities.common.find_capabilities(rules, extractor, disable_progress=True)
+            capabilities = capa.capabilities.common.find_capabilities(rules, extractor, disable_progress=True)
         except capa.main.ShouldExitError as e:
             return {"path": input_file, "status": "error", "error": str(e), "status_code": e.status_code}
         except Exception as e:
@@ -92,12 +92,14 @@ class CAPA(ServiceBase):
                 "error": f"unexpected error: {e}",
             }
 
-        meta = capa.loader.collect_metadata(argv, args.input_file, "auto", os_, [], extractor, counts)
-        meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities)
+        meta = capa.loader.collect_metadata(argv, args.input_file, "auto", os_, [], extractor, capabilities)
+        meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities.matches)
 
-        file_limitation_rules = list(filter(lambda r: r.is_file_limitation_rule(), rules.rules.values()))
+        file_limitation_rules = list(
+            filter(lambda r: r.meta.get("namespace", "").startswith("internal/limitation"), rules.rules.values())
+        )
         for file_limitation_rule in file_limitation_rules:
-            if file_limitation_rule.name not in capabilities:
+            if file_limitation_rule.name not in capabilities.matches:
                 continue
 
             res = ResultSection(f"File Limitation - {file_limitation_rule.name}")
@@ -105,7 +107,7 @@ class CAPA(ServiceBase):
             request.result.add_section(res)
             break
 
-        doc = rd.ResultDocument.from_capa(meta, rules, capabilities)
+        doc = rd.ResultDocument.from_capa(meta, rules, capabilities.matches)
 
         renderer = safely_get_param(request, "renderer", "default")
         if renderer == "simple":
@@ -204,7 +206,7 @@ class CAPA(ServiceBase):
                 return remove_hash_ending(rule_name[:-33])
             return rule_name
 
-        capa_graph_data = list(set([remove_hash_ending(x) for x in capabilities.keys()]))
+        capa_graph_data = list(set([remove_hash_ending(x) for x in capabilities.matches.keys()]))
 
         res = ResultSection("CAPA Information")
         res.add_lines(capa_graph_data)
