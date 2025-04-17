@@ -171,6 +171,10 @@
             "Namespace": "host-interaction/os/info"
           },
           {
+            "Capability": "link function at runtime on Windows (6 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
             "Capability": "link many functions at runtime",
             "Namespace": "linking/runtime-linking"
           },
@@ -213,6 +217,7 @@
             "execute shellcode via indirect call": 1,
             "get common file path": 1,
             "get system information on Windows": 1,
+            "link function at runtime on Windows": 1,
             "link many functions at runtime": 1,
             "linked against CPP standard library": 1,
             "manipulate console buffer": 1,
@@ -269,6 +274,7 @@
           "execute shellcode via indirect call",
           "get common file path",
           "get system information on Windows",
+          "link function at runtime on Windows",
           "link many functions at runtime",
           "linked against CPP standard library",
           "manipulate console buffer",

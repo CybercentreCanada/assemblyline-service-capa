@@ -103,6 +103,10 @@
             "Namespace": "host-interaction/os/version"
           },
           {
+            "Capability": "complete processing asynchronous IO request (9 matches)",
+            "Namespace": "host-interaction/driver"
+          },
+          {
             "Capability": "contains PDB path",
             "Namespace": "executable/pe/pdb"
           },
@@ -140,6 +144,7 @@
           "score_map": {},
           "signatures": {
             "check OS version": 1,
+            "complete processing asynchronous IO request": 1,
             "contains PDB path": 1,
             "create device object": 1,
             "query or enumerate registry key": 1,
@@ -183,6 +188,7 @@
         "heur_id": 1,
         "signatures": [
           "check OS version",
+          "complete processing asynchronous IO request",
           "contains PDB path",
           "create device object",
           "query or enumerate registry key",

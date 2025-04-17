@@ -7,11 +7,6 @@
         "auto_collapse": false,
         "body": [
           {
-            "ATT&CK ID": "T1056.001",
-            "ATT&CK Tactic": "COLLECTION",
-            "ATT&CK Technique": "Input Capture (Keylogging)"
-          },
-          {
             "ATT&CK ID": "T1027",
             "ATT&CK Tactic": "DEFENSE EVASION",
             "ATT&CK Technique": "Obfuscated Files or Information"
@@ -34,7 +29,6 @@
         "depth": 0,
         "heuristic": {
           "attack_ids": [
-            "T1056.001",
             "T1027",
             "T1134"
           ],
@@ -52,11 +46,6 @@
       {
         "auto_collapse": false,
         "body": [
-          {
-            "MBC Behavior": "Keylogging (Application Hook)",
-            "MBC ID": "F0002.001",
-            "MBC Objective": "COLLECTION"
-          },
           {
             "MBC Behavior": "Encode Data (XOR)",
             "MBC ID": "C0026.002",
@@ -98,8 +87,7 @@
             "B0023": 1,
             "C0007": 1,
             "C0026.002": 1,
-            "E1027.m02": 1,
-            "F0002.001": 1
+            "E1027.m02": 1
           }
         },
         "promote_to": null,
@@ -123,12 +111,12 @@
             "Namespace": "load-code/shellcode"
           },
           {
-            "Capability": "log keystrokes via application hook",
-            "Namespace": "collection/keylog"
-          },
-          {
             "Capability": "modify access privileges (4 matches)",
             "Namespace": "host-interaction/process/modify"
+          },
+          {
+            "Capability": "set application hook (10 matches)",
+            "Namespace": "host-interaction/gui"
           }
         ],
         "body_config": {
@@ -150,8 +138,8 @@
             "contain an embedded PE file": 1,
             "encode data using XOR": 1,
             "execute shellcode via indirect call": 1,
-            "log keystrokes via application hook": 1,
-            "modify access privileges": 1
+            "modify access privileges": 1,
+            "set application hook": 1
           }
         },
         "promote_to": null,
@@ -169,7 +157,6 @@
     "heuristics": [
       {
         "attack_ids": [
-          "T1056.001",
           "T1027",
           "T1134"
         ],
@@ -180,7 +167,6 @@
         "attack_ids": [],
         "heur_id": 1,
         "signatures": [
-          "F0002.001",
           "C0026.002",
           "E1027.m02",
           "B0023",
@@ -194,8 +180,8 @@
           "contain an embedded PE file",
           "encode data using XOR",
           "execute shellcode via indirect call",
-          "log keystrokes via application hook",
-          "modify access privileges"
+          "modify access privileges",
+          "set application hook"
         ]
       }
     ],

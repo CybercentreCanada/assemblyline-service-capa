@@ -137,6 +137,10 @@
             "Namespace": "collection"
           },
           {
+            "Capability": "link function at runtime on Windows (5 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
             "Capability": "link many functions at runtime",
             "Namespace": "linking/runtime-linking"
           },
@@ -170,6 +174,7 @@
             "contain obfuscated stackstrings": 1,
             "contains PDB path": 1,
             "get geographical location": 1,
+            "link function at runtime on Windows": 1,
             "link many functions at runtime": 1,
             "manipulate console buffer": 1,
             "terminate process": 1
@@ -218,6 +223,7 @@
           "contain obfuscated stackstrings",
           "contains PDB path",
           "get geographical location",
+          "link function at runtime on Windows",
           "link many functions at runtime",
           "manipulate console buffer",
           "terminate process"

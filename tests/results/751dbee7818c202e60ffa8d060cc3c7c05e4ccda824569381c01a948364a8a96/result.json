@@ -5,6 +5,19 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": "This dynamic analysis trace describes a .NET file.\n\ncapa rules are not yet tuned for the .NET runtime, \nso its analysis may be incomplete or misleading.\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "File Limitation - (internal) .NET file limitation",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": [
           {
             "ATT&CK ID": "T1140",
@@ -89,6 +102,10 @@
             "Namespace": "data-manipulation/encoding/base64"
           },
           {
+            "Capability": "invoke .NET assembly method",
+            "Namespace": "load-code/dotnet"
+          },
+          {
             "Capability": "load .NET assembly",
             "Namespace": "load-code/dotnet"
           }
@@ -111,6 +128,7 @@
           "signatures": {
             "compiled to the .NET platform": 1,
             "decode data using Base64 in .NET": 1,
+            "invoke .NET assembly method": 1,
             "load .NET assembly": 1
           }
         },
@@ -148,6 +166,7 @@
         "signatures": [
           "compiled to the .NET platform",
           "decode data using Base64 in .NET",
+          "invoke .NET assembly method",
           "load .NET assembly"
         ]
       }

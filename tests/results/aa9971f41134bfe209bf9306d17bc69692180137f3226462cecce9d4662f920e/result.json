@@ -267,7 +267,7 @@
             "Namespace": "host-interaction/os/version"
           },
           {
-            "Capability": "check mutex and exit (3 matches)",
+            "Capability": "check mutex on Windows (3 matches)",
             "Namespace": "host-interaction/mutex"
           },
           {
@@ -307,7 +307,7 @@
             "Namespace": "host-interaction/gui/window/hide"
           },
           {
-            "Capability": "link function at runtime on Windows (5 matches)",
+            "Capability": "link function at runtime on Windows (9 matches)",
             "Namespace": "linking/runtime-linking"
           },
           {
@@ -362,7 +362,7 @@
             "accept command line arguments": 1,
             "capture screenshot": 1,
             "check OS version": 1,
-            "check mutex and exit": 1,
+            "check mutex on Windows": 1,
             "contains PDB path": 1,
             "create process on Windows": 1,
             "create thread": 1,
@@ -447,7 +447,7 @@
           "accept command line arguments",
           "capture screenshot",
           "check OS version",
-          "check mutex and exit",
+          "check mutex on Windows",
           "contains PDB path",
           "create process on Windows",
           "create thread",

@@ -35,6 +35,11 @@
             "ATT&CK ID": "T1129",
             "ATT&CK Tactic": "EXECUTION",
             "ATT&CK Technique": "Shared Modules"
+          },
+          {
+            "ATT&CK ID": "T1546.011",
+            "ATT&CK Tactic": "PERSISTENCE",
+            "ATT&CK Technique": "Event Triggered Execution (Application Shimming)"
           }
         ],
         "body_config": {
@@ -54,7 +59,8 @@
             "T1082",
             "T1614",
             "T1059",
-            "T1129"
+            "T1129",
+            "T1546.011"
           ],
           "frequency": 1,
           "heur_id": 1,
@@ -175,10 +181,6 @@
             "Namespace": "executable/pe/pdb"
           },
           {
-            "Capability": "copy file (2 matches)",
-            "Namespace": "host-interaction/file-system/copy"
-          },
-          {
             "Capability": "create directory",
             "Namespace": "host-interaction/file-system/create"
           },
@@ -203,12 +205,20 @@
             "Namespace": "host-interaction/os/info"
           },
           {
+            "Capability": "link function at runtime on Windows (13 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
             "Capability": "link many functions at runtime",
             "Namespace": "linking/runtime-linking"
           },
           {
             "Capability": "parse PE header",
             "Namespace": "load-code/pe"
+          },
+          {
+            "Capability": "persist via application shimming (2 matches)",
+            "Namespace": "persistence"
           },
           {
             "Capability": "query or enumerate registry value",
@@ -251,15 +261,16 @@
             "allocate thread local storage": 1,
             "check if file exists": 1,
             "contains PDB path": 1,
-            "copy file": 1,
             "create directory": 1,
             "enumerate files on Windows": 1,
             "get file attributes": 1,
             "get file version info": 1,
             "get geographical location": 1,
             "get system information on Windows": 1,
+            "link function at runtime on Windows": 1,
             "link many functions at runtime": 1,
             "parse PE header": 1,
+            "persist via application shimming": 1,
             "query or enumerate registry value": 1,
             "read .ini file": 1,
             "resolve function by parsing PE exports": 1,
@@ -287,7 +298,8 @@
           "T1082",
           "T1614",
           "T1059",
-          "T1129"
+          "T1129",
+          "T1546.011"
         ],
         "heur_id": 1,
         "signatures": []
@@ -316,15 +328,16 @@
           "allocate thread local storage",
           "check if file exists",
           "contains PDB path",
-          "copy file",
           "create directory",
           "enumerate files on Windows",
           "get file attributes",
           "get file version info",
           "get geographical location",
           "get system information on Windows",
+          "link function at runtime on Windows",
           "link many functions at runtime",
           "parse PE header",
+          "persist via application shimming",
           "query or enumerate registry value",
           "read .ini file",
           "resolve function by parsing PE exports",

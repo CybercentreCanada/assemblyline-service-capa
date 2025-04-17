@@ -201,7 +201,7 @@
             "Namespace": "host-interaction/file-system"
           },
           {
-            "Capability": "link function at runtime on Windows (2 matches)",
+            "Capability": "link function at runtime on Windows (3 matches)",
             "Namespace": "linking/runtime-linking"
           },
           {

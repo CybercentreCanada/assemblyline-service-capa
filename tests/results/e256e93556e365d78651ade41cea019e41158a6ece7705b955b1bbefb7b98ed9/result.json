@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "This sample appears to be packed.\n\nPacked samples have often been obfuscated to hide their logic.\ncapa cannot handle obfuscation well using static analysis. This means the results may be misleading or incomplete.\nIf possible, you should try to unpack this input file before analyzing it with capa.\nAlternatively, run the sample in a supported sandbox and invoke capa against the report to obtain dynamic analysis results.\n",
+        "body": "This dynamic analysis trace describes a .NET file.\n\ncapa rules are not yet tuned for the .NET runtime, \nso its analysis may be incomplete or misleading.\n",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -13,7 +13,7 @@
         "heuristic": null,
         "promote_to": null,
         "tags": {},
-        "title_text": "File Limitation - (internal) packer file limitation",
+        "title_text": "File Limitation - (internal) .NET file limitation",
         "zeroize_on_tag_safe": false
       },
       {
@@ -23,6 +23,11 @@
             "ATT&CK ID": "T1027.002",
             "ATT&CK Tactic": "DEFENSE EVASION",
             "ATT&CK Technique": "Obfuscated Files or Information (Software Packing)"
+          },
+          {
+            "ATT&CK ID": "T1620",
+            "ATT&CK Tactic": "DEFENSE EVASION",
+            "ATT&CK Technique": "Reflective Code Loading"
           }
         ],
         "body_config": {
@@ -37,7 +42,8 @@
         "depth": 0,
         "heuristic": {
           "attack_ids": [
-            "T1027.002"
+            "T1027.002",
+            "T1620"
           ],
           "frequency": 1,
           "heur_id": 1,
@@ -100,12 +106,12 @@
         "auto_collapse": false,
         "body": [
           {
-            "Capability": "(internal) packer file limitation",
-            "Namespace": "internal/limitation/file"
-          },
-          {
             "Capability": "compiled to the .NET platform",
             "Namespace": "runtime/dotnet"
+          },
+          {
+            "Capability": "invoke .NET assembly method",
+            "Namespace": "load-code/dotnet"
           },
           {
             "Capability": "manipulate unmanaged memory in .NET (2 matches)",
@@ -141,6 +147,7 @@
           "score_map": {},
           "signatures": {
             "compiled to the .NET platform": 1,
+            "invoke .NET assembly method": 1,
             "manipulate unmanaged memory in .NET": 1,
             "packed with Confuser": 1,
             "spawn thread to RWX shellcode": 1,
@@ -162,7 +169,8 @@
     "heuristics": [
       {
         "attack_ids": [
-          "T1027.002"
+          "T1027.002",
+          "T1620"
         ],
         "heur_id": 1,
         "signatures": []
@@ -181,6 +189,7 @@
         "heur_id": 1,
         "signatures": [
           "compiled to the .NET platform",
+          "invoke .NET assembly method",
           "manipulate unmanaged memory in .NET",
           "packed with Confuser",
           "spawn thread to RWX shellcode",

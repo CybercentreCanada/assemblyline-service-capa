@@ -88,10 +88,6 @@
         "auto_collapse": false,
         "body": [
           {
-            "Capability": "(internal) packer file limitation",
-            "Namespace": "internal/limitation/file"
-          },
-          {
             "Capability": "packed with nspack",
             "Namespace": "anti-analysis/packer/nspack"
           }

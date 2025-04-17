@@ -88,10 +88,6 @@
         "auto_collapse": false,
         "body": [
           {
-            "Capability": "(internal) packer file limitation",
-            "Namespace": "internal/limitation/file"
-          },
-          {
             "Capability": "compiled with Borland Delphi",
             "Namespace": "compiler/delphi"
           },

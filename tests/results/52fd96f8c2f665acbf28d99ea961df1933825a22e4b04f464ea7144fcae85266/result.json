@@ -5,36 +5,15 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": [
-          {
-            "ATT&CK ID": "T1569.002",
-            "ATT&CK Tactic": "EXECUTION",
-            "ATT&CK Technique": "System Services (Service Execution)"
-          }
-        ],
-        "body_config": {
-          "column_order": [
-            "ATT&CK Tactic",
-            "ATT&CK Technique",
-            "ATT&CK ID"
-          ]
-        },
-        "body_format": "TABLE",
+        "body": "This dynamic analysis trace describes a .NET file.\n\ncapa rules are not yet tuned for the .NET runtime, \nso its analysis may be incomplete or misleading.\n",
+        "body_config": {},
+        "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
-        "heuristic": {
-          "attack_ids": [
-            "T1569.002"
-          ],
-          "frequency": 1,
-          "heur_id": 1,
-          "score": 0,
-          "score_map": {},
-          "signatures": {}
-        },
+        "heuristic": null,
         "promote_to": null,
         "tags": {},
-        "title_text": "ATT&CK",
+        "title_text": "File Limitation - (internal) .NET file limitation",
         "zeroize_on_tag_safe": false
       },
       {
@@ -91,7 +70,7 @@
             "Namespace": "host-interaction/thread/create"
           },
           {
-            "Capability": "interact with driver via control codes (4 matches)",
+            "Capability": "interact with driver via IOCTL (9 matches)",
             "Namespace": "host-interaction/driver"
           },
           {
@@ -123,7 +102,7 @@
             "compiled to the .NET platform": 1,
             "contains PDB path": 1,
             "create thread": 1,
-            "interact with driver via control codes": 1,
+            "interact with driver via IOCTL": 1,
             "manipulate unmanaged memory in .NET": 1,
             "unmanaged call": 1
           }
@@ -142,13 +121,6 @@
   "results": {
     "heuristics": [
       {
-        "attack_ids": [
-          "T1569.002"
-        ],
-        "heur_id": 1,
-        "signatures": []
-      },
-      {
         "attack_ids": [],
         "heur_id": 1,
         "signatures": [
@@ -163,7 +135,7 @@
           "compiled to the .NET platform",
           "contains PDB path",
           "create thread",
-          "interact with driver via control codes",
+          "interact with driver via IOCTL",
           "manipulate unmanaged memory in .NET",
           "unmanaged call"
         ]

@@ -112,10 +112,6 @@
         "auto_collapse": false,
         "body": [
           {
-            "Capability": "(internal) installer file limitation",
-            "Namespace": "internal/limitation/file"
-          },
-          {
             "Capability": "compiled with Borland Delphi",
             "Namespace": "compiler/delphi"
           },

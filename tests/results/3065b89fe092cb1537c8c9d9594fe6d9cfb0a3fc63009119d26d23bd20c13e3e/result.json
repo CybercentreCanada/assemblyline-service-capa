@@ -94,10 +94,6 @@
         "auto_collapse": false,
         "body": [
           {
-            "Capability": "(internal) packer file limitation",
-            "Namespace": "internal/limitation/file"
-          },
-          {
             "Capability": "packed with UPX",
             "Namespace": "anti-analysis/packer/upx"
           },
