@@ -215,4 +215,4 @@ tags
 
 # End of https://www.toptal.com/developers/gitignore/api/python,vim,visualstudiocode
 
-!CAPA/capa-rules*/lib
+!CAPA/capa-rules*/*
