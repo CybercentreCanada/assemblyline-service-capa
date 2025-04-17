@@ -7,7 +7,7 @@ trigger: ["*"]
 pr: ["*"]
 
 pool:
-  vmImage: "ubuntu-20.04"
+  vmImage: "ubuntu-latest"
 
 resources:
   repositories:
@@ -28,6 +28,6 @@ extends:
   template: stages/test-service.yaml@PipelineTemplates
   parameters:
     samples_repo: unittest-samples
-    test_container: "false"
+    test_container: "true"
     timeout: "30"
     
