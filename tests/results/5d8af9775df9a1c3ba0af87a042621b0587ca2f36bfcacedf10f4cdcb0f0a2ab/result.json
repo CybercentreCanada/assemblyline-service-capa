@@ -15,6 +15,11 @@
             "ATT&CK ID": "T1082",
             "ATT&CK Tactic": "DISCOVERY",
             "ATT&CK Technique": "System Information Discovery"
+          },
+          {
+            "ATT&CK ID": "T1129",
+            "ATT&CK Tactic": "EXECUTION",
+            "ATT&CK Technique": "Shared Modules"
           }
         ],
         "body_config": {
@@ -30,7 +35,8 @@
         "heuristic": {
           "attack_ids": [
             "T1027.005",
-            "T1082"
+            "T1082",
+            "T1129"
           ],
           "frequency": 1,
           "heur_id": 1,
@@ -103,6 +109,14 @@
           {
             "Capability": "contains PDB path",
             "Namespace": "executable/pe/pdb"
+          },
+          {
+            "Capability": "link function at runtime on Windows (5 matches)",
+            "Namespace": "linking/runtime-linking"
+          },
+          {
+            "Capability": "link many functions at runtime",
+            "Namespace": "linking/runtime-linking"
           }
         ],
         "body_config": {
@@ -123,7 +137,9 @@
           "signatures": {
             "check OS version": 1,
             "contain obfuscated stackstrings": 1,
-            "contains PDB path": 1
+            "contains PDB path": 1,
+            "link function at runtime on Windows": 1,
+            "link many functions at runtime": 1
           }
         },
         "promote_to": null,
@@ -142,7 +158,8 @@
       {
         "attack_ids": [
           "T1027.005",
-          "T1082"
+          "T1082",
+          "T1129"
         ],
         "heur_id": 1,
         "signatures": []
@@ -162,7 +179,9 @@
         "signatures": [
           "check OS version",
           "contain obfuscated stackstrings",
-          "contains PDB path"
+          "contains PDB path",
+          "link function at runtime on Windows",
+          "link many functions at runtime"
         ]
       }
     ],

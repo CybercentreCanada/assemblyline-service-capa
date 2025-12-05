@@ -60,6 +60,21 @@
         "auto_collapse": false,
         "body": [
           {
+            "MBC Behavior": "C2 Communication (Send Data)",
+            "MBC ID": "B0030.001",
+            "MBC Objective": "COMMAND AND CONTROL"
+          },
+          {
+            "MBC Behavior": "HTTP Communication (Get Response)",
+            "MBC ID": "C0002.017",
+            "MBC Objective": "COMMUNICATION"
+          },
+          {
+            "MBC Behavior": "HTTP Communication (Send Request)",
+            "MBC ID": "C0002.003",
+            "MBC Objective": "COMMUNICATION"
+          },
+          {
             "MBC Behavior": "Decode Data (Base64)",
             "MBC ID": "C0053.001",
             "MBC Objective": "DATA"
@@ -82,6 +97,9 @@
           "score": 0,
           "score_map": {},
           "signatures": {
+            "B0030.001": 1,
+            "C0002.003": 1,
+            "C0002.017": 1,
             "C0053.001": 1
           }
         },
@@ -108,6 +126,14 @@
           {
             "Capability": "load .NET assembly",
             "Namespace": "load-code/dotnet"
+          },
+          {
+            "Capability": "receive HTTP response",
+            "Namespace": "communication/http/client"
+          },
+          {
+            "Capability": "send data",
+            "Namespace": "communication"
           }
         ],
         "body_config": {
@@ -129,7 +155,9 @@
             "compiled to the .NET platform": 1,
             "decode data using Base64 in .NET": 1,
             "invoke .NET assembly method": 1,
-            "load .NET assembly": 1
+            "load .NET assembly": 1,
+            "receive HTTP response": 1,
+            "send data": 1
           }
         },
         "promote_to": null,
@@ -157,6 +185,9 @@
         "attack_ids": [],
         "heur_id": 1,
         "signatures": [
+          "B0030.001",
+          "C0002.017",
+          "C0002.003",
           "C0053.001"
         ]
       },
@@ -167,7 +198,9 @@
           "compiled to the .NET platform",
           "decode data using Base64 in .NET",
           "invoke .NET assembly method",
-          "load .NET assembly"
+          "load .NET assembly",
+          "receive HTTP response",
+          "send data"
         ]
       }
     ],
