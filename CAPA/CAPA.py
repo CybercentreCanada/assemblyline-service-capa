@@ -52,11 +52,11 @@ class CAPA(ServiceBase):
         self.argv = [
             "--quiet",
             "--signatures",
-            # Ruleset downloaded from https://github.com/mandiant/capa/tree/v9.3.1/sigs
+            # Ruleset downloaded from https://github.com/mandiant/capa/tree/v10.0.0/sigs
             os.path.join(os.path.dirname(__file__), "sigs"),
             "--rules",
-            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v9.3.1.zip
-            os.path.join(os.path.dirname(__file__), "capa-rules-9.3.1"),
+            # Ruleset downloaded from https://github.com/mandiant/capa-rules/archive/refs/tags/v10.0.0.zip
+            os.path.join(os.path.dirname(__file__), "capa-rules-10.0.0"),
             "--format",
             "auto",
             "--backend",
@@ -76,11 +76,6 @@ class CAPA(ServiceBase):
             input_format = capa.main.get_input_format_from_cli(args)
             rules = capa.main.get_rules_from_cli(args)
             backend = capa.main.get_backend_from_cli(args, input_format)
-            sample_path = capa.main.get_sample_path_from_cli(args, backend)
-            if sample_path is None:
-                os_ = "unknown"
-            else:
-                os_ = capa.loader.get_os(sample_path)
             extractor = capa.main.get_extractor_from_cli(args, input_format, backend)
             capabilities = capa.capabilities.common.find_capabilities(rules, extractor, disable_progress=True)
         except capa.main.ShouldExitError as e:
@@ -92,7 +87,7 @@ class CAPA(ServiceBase):
                 "error": f"unexpected error: {e}",
             }
 
-        meta = capa.loader.collect_metadata(argv, args.input_file, "auto", os_, [], extractor, capabilities)
+        meta = capa.loader.collect_metadata(argv, args.input_file, input_format, args.rules, extractor, capabilities)
         meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities.matches)
 
         file_limitation_rules = list(

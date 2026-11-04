@@ -3,7 +3,7 @@ version: $SERVICE_TAG
 description: This service uses the CAPA open source library to identify what the program at hand could do.
 
 # Regex defining the types of files the service accepts and rejects
-accepts: executable/windows/.*
+accepts: executable/(windows|linux)/.*
 rejects: empty|metadata/.*|executable/windows/dos|executable/windows/com
 
 # At which stage the service should run (one of FILTER, EXTRACT, CORE, SECONDARY, POST, REVIEW)
@@ -34,7 +34,7 @@ submission_params:
 
 heuristics:
   - description: CAPA found a matching signature
-    filetype: "executable/windows"
+    filetype: "executable"
     heur_id: 1
     name: Signature Found
     score: 0
