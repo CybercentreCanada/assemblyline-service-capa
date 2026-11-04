@@ -12,6 +12,11 @@
             "ATT&CK Technique": "File and Directory Discovery"
           },
           {
+            "ATT&CK ID": "T1057",
+            "ATT&CK Tactic": "DISCOVERY",
+            "ATT&CK Technique": "Process Discovery"
+          },
+          {
             "ATT&CK ID": "T1012",
             "ATT&CK Tactic": "DISCOVERY",
             "ATT&CK Technique": "Query Registry"
@@ -55,6 +60,7 @@
         "heuristic": {
           "attack_ids": [
             "T1083",
+            "T1057",
             "T1012",
             "T1082",
             "T1614",
@@ -76,6 +82,11 @@
       {
         "auto_collapse": false,
         "body": [
+          {
+            "MBC Behavior": "Analysis Tool Discovery (Process detection)",
+            "MBC ID": "B0013.001",
+            "MBC Objective": "DISCOVERY"
+          },
           {
             "MBC Behavior": "File and Directory Discovery",
             "MBC ID": "E1083",
@@ -144,6 +155,7 @@
           "score": 0,
           "score_map": {},
           "signatures": {
+            "B0013.001": 1,
             "C0018": 1,
             "C0036.006": 1,
             "C0040": 1,
@@ -201,6 +213,10 @@
             "Namespace": "collection"
           },
           {
+            "Capability": "get process heap flags (2 matches)",
+            "Namespace": "host-interaction/process"
+          },
+          {
             "Capability": "get system information on Windows",
             "Namespace": "host-interaction/os/info"
           },
@@ -227,6 +243,10 @@
           {
             "Capability": "read .ini file (2 matches)",
             "Namespace": "host-interaction/file-system/read"
+          },
+          {
+            "Capability": "reference analysis tools strings",
+            "Namespace": "anti-analysis"
           },
           {
             "Capability": "resolve function by parsing PE exports",
@@ -266,6 +286,7 @@
             "get file attributes": 1,
             "get file version info": 1,
             "get geographical location": 1,
+            "get process heap flags": 1,
             "get system information on Windows": 1,
             "link function at runtime on Windows": 1,
             "link many functions at runtime": 1,
@@ -273,6 +294,7 @@
             "persist via application shimming": 1,
             "query or enumerate registry value": 1,
             "read .ini file": 1,
+            "reference analysis tools strings": 1,
             "resolve function by parsing PE exports": 1,
             "terminate process": 1,
             "write file on Windows": 1
@@ -294,6 +316,7 @@
       {
         "attack_ids": [
           "T1083",
+          "T1057",
           "T1012",
           "T1082",
           "T1614",
@@ -308,6 +331,7 @@
         "attack_ids": [],
         "heur_id": 1,
         "signatures": [
+          "B0013.001",
           "E1083",
           "E1059",
           "C0045",
@@ -333,6 +357,7 @@
           "get file attributes",
           "get file version info",
           "get geographical location",
+          "get process heap flags",
           "get system information on Windows",
           "link function at runtime on Windows",
           "link many functions at runtime",
@@ -340,6 +365,7 @@
           "persist via application shimming",
           "query or enumerate registry value",
           "read .ini file",
+          "reference analysis tools strings",
           "resolve function by parsing PE exports",
           "terminate process",
           "write file on Windows"

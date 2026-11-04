@@ -85,6 +85,11 @@
             "MBC Objective": "DEFENSE EVASION"
           },
           {
+            "MBC Behavior": "Analysis Tool Discovery (Process detection)",
+            "MBC ID": "B0013.001",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
             "MBC Behavior": "File and Directory Discovery",
             "MBC ID": "E1083",
             "MBC Objective": "DISCOVERY"
@@ -127,6 +132,7 @@
           "score": 0,
           "score_map": {},
           "signatures": {
+            "B0013.001": 1,
             "B0032.017": 1,
             "B0032.020": 1,
             "C0007": 1,
@@ -187,6 +193,10 @@
             "Namespace": "host-interaction/console"
           },
           {
+            "Capability": "reference analysis tools strings",
+            "Namespace": "anti-analysis"
+          },
+          {
             "Capability": "resolve function by parsing PE exports",
             "Namespace": "load-code/pe"
           },
@@ -221,6 +231,7 @@
             "link many functions at runtime": 1,
             "linked against CPP standard library": 1,
             "manipulate console buffer": 1,
+            "reference analysis tools strings": 1,
             "resolve function by parsing PE exports": 1,
             "terminate process": 1
           }
@@ -257,6 +268,7 @@
           "B0032.017",
           "C0026.002",
           "E1027.m02",
+          "B0013.001",
           "E1083",
           "C0007",
           "C0033",
@@ -278,6 +290,7 @@
           "link many functions at runtime",
           "linked against CPP standard library",
           "manipulate console buffer",
+          "reference analysis tools strings",
           "resolve function by parsing PE exports",
           "terminate process"
         ]

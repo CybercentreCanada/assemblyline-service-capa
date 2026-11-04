@@ -39,7 +39,7 @@
         "depth": 0,
         "heuristic": {
           "attack_ids": [
-            "T1070.001",
+            "T1685.005",
             "T1083",
             "T1082",
             "T1129"
@@ -58,6 +58,11 @@
       {
         "auto_collapse": false,
         "body": [
+          {
+            "MBC Behavior": "Analysis Tool Discovery (Process detection)",
+            "MBC ID": "B0013.001",
+            "MBC Objective": "DISCOVERY"
+          },
           {
             "MBC Behavior": "File and Directory Discovery",
             "MBC ID": "E1083",
@@ -96,6 +101,7 @@
           "score": 0,
           "score_map": {},
           "signatures": {
+            "B0013.001": 1,
             "C0018": 1,
             "C0040": 1,
             "E1083": 1,
@@ -143,6 +149,10 @@
             "Namespace": "linking/static"
           },
           {
+            "Capability": "reference analysis tools strings",
+            "Namespace": "anti-analysis"
+          },
+          {
             "Capability": "terminate process",
             "Namespace": "host-interaction/process/terminate"
           }
@@ -171,6 +181,7 @@
             "link function at runtime on Windows": 1,
             "link many functions at runtime": 1,
             "linked against CPP standard library": 1,
+            "reference analysis tools strings": 1,
             "terminate process": 1
           }
         },
@@ -189,7 +200,7 @@
     "heuristics": [
       {
         "attack_ids": [
-          "T1070.001",
+          "T1685.005",
           "T1083",
           "T1082",
           "T1129"
@@ -201,6 +212,7 @@
         "attack_ids": [],
         "heur_id": 1,
         "signatures": [
+          "B0013.001",
           "E1083",
           "E1083.m01",
           "C0040",
@@ -219,6 +231,7 @@
           "link function at runtime on Windows",
           "link many functions at runtime",
           "linked against CPP standard library",
+          "reference analysis tools strings",
           "terminate process"
         ]
       }

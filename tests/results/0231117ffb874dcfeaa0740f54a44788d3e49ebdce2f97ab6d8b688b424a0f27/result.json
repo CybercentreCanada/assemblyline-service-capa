@@ -130,7 +130,7 @@
             "Namespace": "host-interaction/process/create"
           },
           {
-            "Capability": "create process on Windows (2 matches)",
+            "Capability": "create process in .NET (2 matches)",
             "Namespace": "host-interaction/process/create"
           },
           {
@@ -142,7 +142,7 @@
             "Namespace": "data-manipulation/regex"
           },
           {
-            "Capability": "read file on Windows (3 matches)",
+            "Capability": "read file in .NET (3 matches)",
             "Namespace": "host-interaction/file-system/read"
           },
           {
@@ -181,10 +181,10 @@
             "access .NET resource": 1,
             "compiled to the .NET platform": 1,
             "create a process with modified I/O handles and window": 1,
-            "create process on Windows": 1,
+            "create process in .NET": 1,
             "create thread": 1,
             "find data using regex in .NET": 1,
-            "read file on Windows": 1,
+            "read file in .NET": 1,
             "reference anti-VM strings targeting VMWare": 1,
             "reference anti-VM strings targeting VirtualBox": 1,
             "suspend thread": 1,
@@ -230,10 +230,10 @@
           "access .NET resource",
           "compiled to the .NET platform",
           "create a process with modified I/O handles and window",
-          "create process on Windows",
+          "create process in .NET",
           "create thread",
           "find data using regex in .NET",
-          "read file on Windows",
+          "read file in .NET",
           "reference anti-VM strings targeting VMWare",
           "reference anti-VM strings targeting VirtualBox",
           "suspend thread",

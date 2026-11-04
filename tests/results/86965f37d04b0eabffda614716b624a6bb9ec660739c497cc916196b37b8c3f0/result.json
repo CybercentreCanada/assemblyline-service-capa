@@ -63,6 +63,11 @@
             "MBC Objective": "ANTI-STATIC ANALYSIS"
           },
           {
+            "MBC Behavior": "Analysis Tool Discovery (Process detection)",
+            "MBC ID": "B0013.001",
+            "MBC Objective": "DISCOVERY"
+          },
+          {
             "MBC Behavior": "Allocate Memory",
             "MBC ID": "C0007",
             "MBC Objective": "MEMORY"
@@ -100,6 +105,7 @@
           "score": 0,
           "score_map": {},
           "signatures": {
+            "B0013.001": 1,
             "B0032.017": 1,
             "B0032.020": 1,
             "C0007": 1,
@@ -149,6 +155,10 @@
             "Namespace": "host-interaction/console"
           },
           {
+            "Capability": "reference analysis tools strings",
+            "Namespace": "anti-analysis"
+          },
+          {
             "Capability": "terminate process (3 matches)",
             "Namespace": "host-interaction/process/terminate"
           }
@@ -177,6 +187,7 @@
             "link function at runtime on Windows": 1,
             "link many functions at runtime": 1,
             "manipulate console buffer": 1,
+            "reference analysis tools strings": 1,
             "terminate process": 1
           }
         },
@@ -208,6 +219,7 @@
         "signatures": [
           "B0032.020",
           "B0032.017",
+          "B0013.001",
           "C0007",
           "C0033",
           "C0040",
@@ -226,6 +238,7 @@
           "link function at runtime on Windows",
           "link many functions at runtime",
           "manipulate console buffer",
+          "reference analysis tools strings",
           "terminate process"
         ]
       }
